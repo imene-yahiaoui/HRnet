@@ -1,16 +1,18 @@
 import "./style.css";
+
+import LabeledSelect from "../../components/labeledSelect";
+import departmentData from "../../assets/json/departmentData.json"
 function Department() {
+
   return (
-    <>
-      <label htmlFor="department">Department</label>
-      <select name="department" id="department">
-        <option>Sales</option>
-        <option>Marketing</option>
-        <option>Engineering</option>
-        <option>Human Resources</option>
-        <option>Legal</option>
-      </select>
-    </>
+    <LabeledSelect
+      options={departmentData.map((stat) => ({
+        key: stat.abbreviation,
+        label: stat.name,
+      }))}
+      name="Department"
+      nameId="department"
+    />
   );
 }
 export default Department;
