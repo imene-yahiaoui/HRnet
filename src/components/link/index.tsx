@@ -7,8 +7,12 @@
  */
 import { Link } from "react-router-dom";
 import "./style.css";
-
-const LinkComponent = ({path,text}) => {
+interface LinkComponentProps {
+  path: string;
+  text: string;
+ 
+}
+const LinkComponent = ({path,text}:LinkComponentProps) => {
   return (
  
       <Link to={path}>{text}</Link>

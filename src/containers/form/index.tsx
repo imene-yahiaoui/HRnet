@@ -5,6 +5,9 @@ import Button from "../../components/button";
 import State from "../state";
 import "./style.css";
 function Form() {
+  const handleClick = () => {
+     console.log("Button clicked!");
+  };
   return (
     <div className="container">
       <form>
@@ -22,7 +25,7 @@ function Form() {
         </fieldset>
         <Department />
       </form>
-      <Button btnName="Save" />
+      <Button btnName="Save" click={handleClick}/>
     </div>
   );
 }
