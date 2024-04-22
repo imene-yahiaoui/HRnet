@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import LabeledSelect from "../../components/labeledSelect";
-import statesData from "../../assets/json/statesData.json";
+import statesData from "../../assets/json/statesData copy.json";
+
 function State() {
   return (
     <LabeledSelect
-      options={statesData.map((stat) => ({
+      options={statesData.map((stat:any) => ({
         key: stat.abbreviation,
         label: stat.name,
       }))}

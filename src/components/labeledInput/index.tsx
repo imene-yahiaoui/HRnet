@@ -1,6 +1,10 @@
 import "./style.css";
-
-function LabeledInput({ name, type, nameId }) {
+interface LabeledInputProps {
+  name: string;
+  nameId: string;
+  type:string;
+}
+function LabeledInput({ name, type, nameId }:LabeledInputProps) {
   return (
     <>
       <label htmlFor={nameId}>{name}</label>
