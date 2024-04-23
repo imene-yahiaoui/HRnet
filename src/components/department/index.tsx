@@ -1,9 +1,8 @@
 import "./style.css";
 
 import LabeledSelect from "../../components/labeledSelect";
-import departmentData from "../../assets/json/departmentData.json"
+import departmentData from "../../assets/json/departmentData.json";
 function Department() {
-
   return (
     <LabeledSelect
       options={departmentData.map((stat) => ({
