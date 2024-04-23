@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "./style.css";
-import { FaCaretDown } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 function Show() {
   const optionShow = [
     { value: 10 },
@@ -18,7 +18,7 @@ function Show() {
           ))}
         </select>
 
-        <FaCaretDown className="icon-show" />
+        <FaChevronDown className="icon-show" />
       </div>
       <p>entries</p>
     </div>
