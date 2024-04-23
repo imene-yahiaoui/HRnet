@@ -1,0 +1,32 @@
+.showContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
+  align-items: baseline;
+}
+
+.select-container-show {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 49px;
+  position: relative;
+}
+.selectBox-show {
+  appearance: none;
+  width: 100%;
+  font-size: 12px;
+  padding: 0 0px 0 10px;
+  border: 1px solid black;
+}
+.icon-show {
+  font-size: 10px;
+  position: absolute;
+  right: 4px;
+}
+.select-container-show select {
+  height: 20px;
+  border-radius: 0;
+}

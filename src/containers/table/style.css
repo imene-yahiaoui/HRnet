@@ -1,0 +1,18 @@
+.table-container {
+  width: 100%;
+}
+.table-row {
+  display: flex;
+  flex-direction: row;
+  width: 97%;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-bottom: 1px solid #111;
+
+}
+.table-row th {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

@@ -1,0 +1,19 @@
+.body-Employees {
+  width: 60%;
+  margin: 0 auto;
+}
+.searchSection {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  column-gap: 10px;
+}
+.header-Employees {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.searchSection input {
+  height: 20px;
+  border: 1px solid black;
+}

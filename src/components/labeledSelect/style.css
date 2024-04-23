@@ -44,8 +44,7 @@ select option {
   height: 100vh;
   padding: 10px;
   background-color: white;
-  overflow : none;
+  overflow: none;
   position: absolute;
   bottom: 0;
 }
- 
