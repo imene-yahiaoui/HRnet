@@ -8,7 +8,8 @@
 import Header from "../../components/header" ;
 import LinkComponent from "../../components/link";
 import Show from "../../components/show";
-import LabeledInput from "../../components/labeledInput"
+import LabeledInput from "../../components/labeledInput";
+import Table from "../../containers/table"
 import "./style.css";
 
 
@@ -22,6 +23,7 @@ const Employees = () => {
  <LabeledInput nameId="search" type="search" name="Search :"/>
  </section>
  </div>
+ <Table/>
  <LinkComponent path="/" text="Home" />
 
     </div>
