@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./style.css";
 interface LabeledInputProps {
   name: string;
   nameId: string;
-  type:string;
+  type: string;
+
 }
-function LabeledInput({ name, type, nameId }:LabeledInputProps) {
+function LabeledInput({ name, type, nameId }: LabeledInputProps) {
   return (
     <>
       <label htmlFor={nameId}>{name}</label>
-      <input type={type} id={nameId} />
+      <input type={type} id={nameId} defaultValue=""   />
     </>
   );
 }
