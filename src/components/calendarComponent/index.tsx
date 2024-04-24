@@ -19,7 +19,7 @@ function CalendarComponent() {
   const toggleCalendar = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsCalendarOpen(!isCalendarOpen);
-    console.log("calendar is:", isCalendarOpen);
+    // console.log("calendar is:", isCalendarOpen);
   };
   /**
    * userEffect for examen is i click outside the calender or not ?if yes then close it.
@@ -52,14 +52,14 @@ function CalendarComponent() {
    * if i click in the calender
    */
   useEffect(() => {
+    console.log("calendar is updated:", isCalendarOpen);
     const handleClickInside = (event: MouseEvent) => {
       const calendarTiles = document.querySelectorAll(
         ".react-calendar__tile.react-calendar__month-view__days__day"
       );
       calendarTiles.forEach((tile) => {
         if (tile.contains(event.target as Node)) {
-          setIshandelInside(!ishandelInside);
-          console.log("ishandelInside", ishandelInside);
+          setIshandelInside(true);
         }
       });
     };
@@ -70,9 +70,12 @@ function CalendarComponent() {
       document.removeEventListener("mousedown", handleClickInside);
     };
   }, [isCalendarOpen, ishandelInside]);
-
+/**
+ * update value input 
+ */
   useEffect(() => {
-    if (isCalendarOpen && ishandelInside) {
+    console.log("ishandelInside  is updated:", ishandelInside);
+    if (ishandelInside) {
       console.log("je suis rentrer dans la boucle ");
       console.log("value", value);
       const formattedDate = `${String(value?.getDate()).padStart(
@@ -99,11 +102,10 @@ function CalendarComponent() {
         <div id="calendar-container">
           <Calendar
             onChange={(date: ValuePiece) => {
-             
               onChange(date);
-            
+              //close calender
+              setIsCalendarOpen(false);
             }}
-            
             value={value as Date}
           />
         </div>
