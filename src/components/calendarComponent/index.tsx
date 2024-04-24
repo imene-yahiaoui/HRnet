@@ -70,9 +70,9 @@ function CalendarComponent() {
       document.removeEventListener("mousedown", handleClickInside);
     };
   }, [isCalendarOpen, ishandelInside]);
-/**
- * update value input 
- */
+  /**
+   * update value input
+   */
   useEffect(() => {
     console.log("ishandelInside  is updated:", ishandelInside);
     if (ishandelInside) {
