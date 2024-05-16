@@ -10,7 +10,7 @@ import Button from '../../components/button/index';
  
 
 function Form() {
-  const handleClick = (e) => {
+  const handleClick = (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault
      console.log("Button clicked!");
   };

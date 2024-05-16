@@ -6,12 +6,13 @@ import "react-calendar/dist/Calendar.css";
 
 type ValuePiece = Date | null;
 
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+// type Value = ValuePiece | [ValuePiece, ValuePiece]| null;
 
 function CalendarComponent() {
-  const [value, onChange] = useState<Value>(new Date());
+  const [value, onChange] = useState<ValuePiece>(new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
-  const [dateValue, setDateValue] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [dateValue, setDateValue] = useState<any>(null);
   const [ishandelInside, setIshandelInside] = useState<boolean>(false);
   /**
    * function close calender
@@ -19,7 +20,6 @@ function CalendarComponent() {
   const toggleCalendar = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsCalendarOpen(!isCalendarOpen);
-    // console.log("calendar is:", isCalendarOpen);
   };
   /**
    * userEffect for examen is i click outside the calender or not ?if yes then close it.
@@ -46,7 +46,7 @@ function CalendarComponent() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCalendarOpen]);
-  const inputValue = document.getElementById("date-of-birth");
+  const inputValue = document.getElementById("date-of-birth") as HTMLInputElement | null;
 
   /**
    * if i click in the calender
@@ -86,7 +86,7 @@ function CalendarComponent() {
         "0"
       )}/${value?.getFullYear()}`;
       setDateValue(formattedDate);
-      inputValue.value = dateValue;
+      if (inputValue) inputValue.value = dateValue;
     }
   }, [dateValue, inputValue, isCalendarOpen, ishandelInside, value]);
 
@@ -95,7 +95,7 @@ function CalendarComponent() {
       <div>
         <p> Date of Birth </p>
         <button title="date" onClick={toggleCalendar} className="inputDate-btn">
-          <LabeledInput type="text" nameId="date-of-birth" />
+          <LabeledInput type="text" nameId="date-of-birth" name=""/>
         </button>
       </div>
       {isCalendarOpen && (
