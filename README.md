@@ -1,1 +1,3 @@
 HRnet
+
+react,  TypeScript  ,Redux 
