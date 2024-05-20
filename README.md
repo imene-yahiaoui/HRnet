@@ -1,4 +1,4 @@
 HRnet
 
 
-react,  TypeScript  ,Redux
+react
