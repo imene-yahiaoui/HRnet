@@ -1,4 +1,7 @@
-HRnet
+HRnet 💻📱
+
+Technologies utilisées :
 
 
-react
+
+React, TypeScript
