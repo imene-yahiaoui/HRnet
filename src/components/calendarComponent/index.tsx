@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import "./style.css";
 import "react-calendar/dist/Calendar.css";
 
-type ValuePiece = Date | null;
+// type ValuePiece = Date | null;
 
-// type Value = ValuePiece | [ValuePiece, ValuePiece]| null;
+  type Value = Date | null;
 
 function CalendarComponent() {
-  const [value, onChange] = useState<ValuePiece>(new Date());
+  const [value, onChange] = useState<Value>(new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [dateValue, setDateValue] = useState<any>(null);
@@ -26,6 +26,7 @@ function CalendarComponent() {
    */
 
   useEffect(() => {
+    
     const handleClickOutside = (event: MouseEvent) => {
       if (
         isCalendarOpen &&
@@ -46,7 +47,9 @@ function CalendarComponent() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCalendarOpen]);
-  const inputValue = document.getElementById("date-of-birth") as HTMLInputElement | null;
+  const inputValue = document.getElementById(
+    "date-of-birth"
+  ) as HTMLInputElement | null;
 
   /**
    * if i click in the calender
@@ -81,7 +84,7 @@ function CalendarComponent() {
       const formattedDate = `${String(value?.getDate()).padStart(
         2,
         "0"
-      )}/${String(value?.getMonth() + 1).padStart(
+      )}/${String((value?.getMonth() ?? 0) + 1).padStart(
         2,
         "0"
       )}/${value?.getFullYear()}`;
@@ -89,23 +92,28 @@ function CalendarComponent() {
       if (inputValue) inputValue.value = dateValue;
     }
   }, [dateValue, inputValue, isCalendarOpen, ishandelInside, value]);
+ function enChangeFunction(date: Value,e: React.MouseEvent<HTMLButtonElement>) {
+  e.preventDefault();
+  onChange(date);
+  //close calender
+  setIsCalendarOpen(false);
 
+}
   return (
     <>
       <div>
         <p> Date of Birth </p>
         <button title="date" onClick={toggleCalendar} className="inputDate-btn">
-          <LabeledInput type="text" nameId="date-of-birth" name=""/>
+          <LabeledInput type="text" nameId="date-of-birth" name="" />
         </button>
       </div>
       {isCalendarOpen && (
         <div id="calendar-container">
           <Calendar
-            onChange={(date: ValuePiece) => {
-              onChange(date);
-              //close calender
-              setIsCalendarOpen(false);
-            }}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
+           onChange={enChangeFunction}
+           
             value={value as Date}
           />
         </div>
