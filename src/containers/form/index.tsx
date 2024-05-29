@@ -1,22 +1,31 @@
 import LabeledInput from "../../components/labeledInput";
-
+import {Modal} from "modal-react-vite-ts";
 import Department from "../../components/department";
 import State from "../state";
 import "./style.css";
-// import { useState } from 'react';
  import  CalendarComponent from "../../components/calendarComponent";
 import Button from '../../components/button/index';
+import { useState } from "react"
 
  
 
 function Form() {
+  const [modalisOpen,setModalisOpen]=useState(false)
+
+
   const handleClick = (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault
      console.log("Button clicked!");
+     setModalisOpen(true)
   };
 
+  const closeModal=() =>{
+   
+    setModalisOpen(false)
+  }
 
   return (
+    <>
     <div className="container">
       <form>
         <LabeledInput 
@@ -59,6 +68,9 @@ function Form() {
       </form>
       <Button btnName="Save" click={handleClick}/>
     </div>
+    {modalisOpen?
+<Modal closeModalFunction={closeModal}  closeModalBtn ={closeModal}  message="Employee Created!" closeBtn="close" xBtn="x"  />:""}
+</>
   );
 }
 
