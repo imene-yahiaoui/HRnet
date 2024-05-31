@@ -1,7 +1,7 @@
 import "./style.css";
 
 interface ButtonProps {
-  click: () => void;
+  click: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   btnName: string;
 }
 function Button({ click, btnName }: ButtonProps) {

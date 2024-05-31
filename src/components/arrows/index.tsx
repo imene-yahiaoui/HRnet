@@ -3,8 +3,8 @@ import { FaCaretDown } from "react-icons/fa";
 import { FaCaretUp } from "react-icons/fa";
 
 interface ArrowProps {
-  clickUp: () => void;
-  clickDown: () => void;
+  clickUp: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  clickDown: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 function Arrows({ clickUp, clickDown }: ArrowProps) {
   return (

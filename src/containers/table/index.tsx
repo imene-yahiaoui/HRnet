@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "./style.css";
-import Arrows from "../../components/arrows"
+import Arrows from "../../components/arrows";
 
 function Table() {
   const columns = [
@@ -14,16 +14,25 @@ function Table() {
     { title: "State", data: "state" },
     { title: "Zip Code", data: "zipCode" },
   ];
-
+  function clickUp(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    console.log("clickUp");
+  }
+  function clickDown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    console.log("clickDown");
+  }
   return (
     <table className="table-container">
-        <thead>
-      <tr className="table-row">
-        {columns.map((th: any) => (
-          <th key={th.title}>{th.title} 
-          <Arrows/></th>
-        ))}
-      </tr>
+      <thead>
+        <tr className="table-row">
+          {columns.map((th: any) => (
+            <th key={th.title}>
+              {th.title}
+              <Arrows clickUp={clickUp} clickDown={clickDown} />
+            </th>
+          ))}
+        </tr>
       </thead>
     </table>
   );
