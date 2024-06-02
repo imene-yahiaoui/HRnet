@@ -1,28 +1,52 @@
 import LabeledInput from "../../components/labeledInput";
-import LabeledInputDate from "../../components/labeledInputDate";
-import Department from "../../components/department";
-import State from "../state";
+import DatePickerComponent from "../../components/datePickerComponent";
 import "./style.css";
 import Button from "../../components/button/index";
 import { useState, useRef } from "react";
 import { Modal } from "modal-react-vite-ts";
-/**
- * a fair ici
+import LabeledSelect from "../../components/labeledSelect";
+import departmentData from "../../assets/json/departmentData.json";
+import StateData from "../../assets/json/statesData.json";
+import DisplayMessage from "../../components/displayMessage";
 
- 
- * change start date
- * sed that to redux
- * if value empty err message
- */
 function Form() {
   const form = useRef();
   const [modalisOpen, setModalisOpen] = useState(false);
+  const [DateBirth, setDateBirth] = useState(null);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [selectedOptionDepartement, setSelectedOptionDepartement] =
+    useState(null);
+  const [selectedOptionState, setSelectedOptionState] = useState(null);
+  // the min date of birth
+  const minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() - 70);
+  // the max date of birth
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18);
+  // the min to start date
+  const minStartDate = new Date();
+  minStartDate.setDate(minStartDate.getDate());
+  /**
+   * optionsDepartement
+   */
+  const optionsDepartement = departmentData.map((state: State) => ({
+    value: state.abbreviation,
+    label: state.name,
+  }));
+  /**
+   * optionsState
+   */
+  const optionsState = StateData.map((state: State) => ({
+    value: state.abbreviation,
+    label: state.name,
+  }));
 
   // Fonction for addInvalidClass
   const addInvalidClass = (inputName: string) => {
-    const inputElement = form.current?.elements.namedItem(
-      inputName
-    ) as HTMLInputElement;
+    const inputElement = form.current?.elements.namedItem(inputName) as
+      | HTMLInputElement
+      | HTMLSelectElement;
+
     if (inputElement && !inputElement.value) {
       inputElement.classList.add("invalid");
     } else {
@@ -37,43 +61,72 @@ function Form() {
     addInvalidClass("zipCode");
     addInvalidClass("startDate");
     addInvalidClass("dateOfBirth");
+    addInvalidClass("state");
+    addInvalidClass("department");
   };
   //click on save btn
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    const employee = [];
     const ValuefirstName = form?.current?.firstName?.value?.trim();
     const ValuelastName = form?.current?.lastName?.value.trim();
     const ValueStreet = form?.current?.street?.value.trim();
     const ValueCity = form?.current?.city?.value.trim();
+    const ValueState = form?.current?.state?.value.trim();
+    const ValueDepartment = form?.current?.department?.value;
     const ValueZipCode = form?.current?.zipCode.value.trim();
-    console.log("first Values:", ValuefirstName);
-    console.log("lastValues:", ValuelastName);
-    console.log("startDate:", form.current.startDate.value);
-    console.log("dateOfBirth:", form.current.dateOfBirth.value);
-    console.log("street:", ValueStreet);
-    console.log("city:", ValueCity);
-    console.log("zipCode:", ValueZipCode);
+    /**
+     * chek validation
+     */
 
-    ///ckek validation
     if (form.current?.checkValidity()) {
       console.log("Form is valid!");
       setModalisOpen(true);
+      const employeeData = {
+        firstName: ValuefirstName,
+        lastName: ValuelastName,
+        street: ValueStreet,
+        city: ValueCity,
+        state: ValueState,
+        department: ValueDepartment,
+        zipCode: ValueZipCode,
+        dateOfBirth: form.current.dateOfBirth.value,
+        startDate: form.current.startDate.value,
+      };
+      /**
+       * Add employee data to the employee array
+       */
+
+      employee.push(employeeData);
+      console.log("Employee Array:", employee);
       addinvalidAll();
     } else {
       console.log("Form is invalid!");
       //add css to invalid cas
       addinvalidAll();
-
+      /**
+       * msg err
+       */
+      DisplayMessage(
+        "Please fill out the form correctly",
+        "linear-gradient(to right, #b90909, #b90908)"
+      );
       form.current?.reportValidity();
     }
   };
-  //close modal
+  /**
+   * close Modal
+   */
+
   const closeModal = () => {
     setModalisOpen(false);
     //delet value
     form.current.firstName.value = "";
     form.current.lastName.value = "";
-    form.current.startDate.value = "";
+    setDateBirth(null);
+    setStartDate(null);
+    setSelectedOptionDepartement(null);
+    setSelectedOptionState(null);
     form.current.dateOfBirth.value = "";
     form.current.street.value = "";
     form.current.city.value = "";
@@ -96,18 +149,27 @@ function Form() {
             name="lastName"
             nameId="last-name"
           />
-          <LabeledInputDate
-            type="text"
+          <DatePickerComponent
+            htmlFor="dateOfBirth"
+            type="date"
             name="dateOfBirth"
             nameLable="Date Of Birth"
             nameId="dateOfBirth"
+            minDate={minDate}
+            maxDate={maxDate}
+            selectedDate={DateBirth}
+            onChange={(date) => setDateBirth(date)}
           />
 
-          <LabeledInputDate
-            type="text"
+          <DatePickerComponent
+            htmlFor="startDate"
+            type="date"
             name="startDate"
             nameLable="Start Date"
             nameId="startDate"
+            minDate={minStartDate}
+            selectedDate={startDate}
+            onChange={(date) => setStartDate(date)}
           />
 
           <fieldset className="address">
@@ -124,7 +186,18 @@ function Form() {
               name="city"
               nameId="city"
             />
-            <State />
+            <LabeledSelect
+              htmlFor="state"
+              label="State"
+              inputId="state"
+              name="state"
+              type="text"
+              defaultValue={selectedOptionState}
+              onChange={setSelectedOptionState}
+              options={optionsState}
+              placeholder="Alabama"
+              className="state"
+            />
             <LabeledInput
               type="number"
               nameLable="Zip Code"
@@ -132,9 +205,21 @@ function Form() {
               nameId="zip-code"
             />
           </fieldset>
-          <Department />
+
+          <LabeledSelect
+            htmlFor="department"
+            label="Department"
+            inputId="department"
+            name="department"
+            type="text"
+            defaultValue={selectedOptionDepartement}
+            onChange={setSelectedOptionDepartement}
+            options={optionsDepartement}
+            placeholder="Sales"
+            className="department"
+          />
         </form>
-        <Button btnName="Save" click={handleClick} />
+        <Button className="saveBtn" btnName="Save" click={handleClick} />
       </div>
       {modalisOpen ? (
         <Modal

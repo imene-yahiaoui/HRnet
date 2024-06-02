@@ -1,26 +1,41 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import Select from "react-select";
 import "./style.css";
-import { FaCaretDown } from "react-icons/fa";
 interface LabeledSelectProps {
+  htmlFor: string;
+  label: string;
   name: string;
   nameId: string;
-  options: [] | any;
+  options: [];
+  defaultValue: string;
+  placeholder: string;
+  onChange: () => void;
 }
-function LabeledSelect({ name, nameId, options }: LabeledSelectProps) {
+function LabeledSelect({
+  name,
+  nameId,
+  options,
+  defaultValue,
+  placeholder,
+  onChange,
+  htmlFor,
+  label,
+  className,
+}: LabeledSelectProps) {
   return (
-    <div>
-      <label htmlFor={nameId}>{name}</label>
-      <div className="select-container">
-        <select name={nameId} id={nameId} className="selectBox">
-          {options.map((option:any) => (
-            <option key={option.key} value={option.key}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+    <div className="select-container">
+      <label htmlFor={nameId} htmlFor={htmlFor}>
+        {label}
+      </label>
 
-        <FaCaretDown className="icon" />
-      </div>
+      <Select
+        className={`select   ${className}`}
+        name={name}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        options={options}
+        placeholder={placeholder}
+        required
+      />
     </div>
   );
 }

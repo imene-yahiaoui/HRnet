@@ -1,19 +1,23 @@
 label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 10px;
 }
 
 .address {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .invalid {
-    border: 1px solid red;
-  }
+  border: 1px solid red !important;
+}
+.saveBtn{
+    color:white;
+    background-color: blue;
+}
