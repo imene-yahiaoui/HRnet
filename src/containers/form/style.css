@@ -14,3 +14,6 @@ label {
     align-items: center;
     justify-content: center;
 }
+.invalid {
+    border: 1px solid red;
+  }

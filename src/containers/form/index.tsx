@@ -3,14 +3,13 @@ import LabeledInputDate from "../../components/labeledInputDate";
 import Department from "../../components/department";
 import State from "../state";
 import "./style.css";
-
 import Button from "../../components/button/index";
 import { useState, useRef } from "react";
 import { Modal } from "modal-react-vite-ts";
 /**
  * a fair ici
- * add  redux
- * have the form value
+
+ 
  * change start date
  * sed that to redux
  * if value empty err message
@@ -19,16 +18,28 @@ function Form() {
   const form = useRef();
   const [modalisOpen, setModalisOpen] = useState(false);
 
+  // Fonction for addInvalidClass
+  const addInvalidClass = (inputName: string) => {
+    const inputElement = form.current?.elements.namedItem(
+      inputName
+    ) as HTMLInputElement;
+    if (inputElement && !inputElement.value) {
+      inputElement.classList.add("invalid");
+    } else {
+      inputElement?.classList.remove("invalid");
+    }
+  };
+  const addinvalidAll = () => {
+    addInvalidClass("firstName");
+    addInvalidClass("lastName");
+    addInvalidClass("street");
+    addInvalidClass("city");
+    addInvalidClass("zipCode");
+    addInvalidClass("startDate");
+    addInvalidClass("dateOfBirth");
+  };
   //click on save btn
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    ///ckek validation
-    if (form.current?.checkValidity()) {
-      console.log("Form is valid!");
-    } else {
-      console.log("Form is invalid!");
-      form.current.reportValidity();
-    }
-
     e.preventDefault();
     const ValuefirstName = form?.current?.firstName?.value?.trim();
     const ValuelastName = form?.current?.lastName?.value.trim();
@@ -43,11 +54,23 @@ function Form() {
     console.log("city:", ValueCity);
     console.log("zipCode:", ValueZipCode);
 
-    setModalisOpen(true);
+    ///ckek validation
+    if (form.current?.checkValidity()) {
+      console.log("Form is valid!");
+      setModalisOpen(true);
+      addinvalidAll();
+    } else {
+      console.log("Form is invalid!");
+      //add css to invalid cas
+      addinvalidAll();
+
+      form.current?.reportValidity();
+    }
   };
   //close modal
   const closeModal = () => {
     setModalisOpen(false);
+    //delet value
     form.current.firstName.value = "";
     form.current.lastName.value = "";
     form.current.startDate.value = "";
@@ -79,7 +102,7 @@ function Form() {
             nameLable="Date Of Birth"
             nameId="dateOfBirth"
           />
-          
+
           <LabeledInputDate
             type="text"
             name="startDate"
