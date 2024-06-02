@@ -1,25 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import employeeReducer from "./helpers/features/employeeSlice";
-import storage from "redux-persist/lib/storage";
-import { persistReducer, persistStore } from "redux-persist";
-import { thunk } from "redux-thunk";
-
-const persistConfig = {
-  key: "root",
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfig, employeeReducer);
+import employeeSlice from "./helpers/features/employeeSlice.ts";
 
 export const store = configureStore({
   reducer: {
-    employeeInfos: persistedReducer,
+    employeeInfos: employeeSlice,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ["persist/PERSIST"],
-      },
-    }).concat(thunk),
+  devTools: true,
 });
-export const persistor = persistStore(store);

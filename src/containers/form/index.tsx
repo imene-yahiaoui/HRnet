@@ -1,5 +1,9 @@
 import LabeledInput from "../../components/labeledInput";
 import DatePickerComponent from "../../components/datePickerComponent";
+ 
+import { useDispatch } from "react-redux";
+ import {addEmployeeInfos} from "../../helpers/features/employeeSlice.ts"
+ import {store}from "../../store.js"
 import "./style.css";
 import Button from "../../components/button/index";
 import { useState, useRef } from "react";
@@ -10,6 +14,8 @@ import StateData from "../../assets/json/statesData.json";
 import DisplayMessage from "../../components/displayMessage";
 
 function Form() {
+ 
+  const dispatch = useDispatch();
   const form = useRef();
   const [modalisOpen, setModalisOpen] = useState(false);
   const [DateBirth, setDateBirth] = useState(null);
@@ -67,7 +73,7 @@ function Form() {
   //click on save btn
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const employee = [];
+    const employeeInfo = [];
     const ValuefirstName = form?.current?.firstName?.value?.trim();
     const ValuelastName = form?.current?.lastName?.value.trim();
     const ValueStreet = form?.current?.street?.value.trim();
@@ -81,7 +87,7 @@ function Form() {
 
     if (form.current?.checkValidity()) {
       console.log("Form is valid!");
-      setModalisOpen(true);
+     
       const employeeData = {
         firstName: ValuefirstName,
         lastName: ValuelastName,
@@ -97,9 +103,13 @@ function Form() {
        * Add employee data to the employee array
        */
 
-      employee.push(employeeData);
-      console.log("Employee Array:", employee);
+      employeeInfo.push(employeeData);
+      console.log("Employee Array:", employeeInfo);
       addinvalidAll();
+   
+      dispatch(addEmployeeInfos(employeeData));
+      localStorage.setItem("employeeData", JSON.stringify(store.getState()));
+      setModalisOpen(true);
     } else {
       console.log("Form is invalid!");
       //add css to invalid cas
