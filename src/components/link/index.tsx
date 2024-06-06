@@ -14,9 +14,9 @@ interface LinkComponentProps {
 }
 const LinkComponent = ({path,text}:LinkComponentProps) => {
   return (
- 
-      <Link to={path}>{text}</Link>
- 
+ <>
+      <Link className="link" to={path}>{text}</Link>
+ </>
   );
 };
 
