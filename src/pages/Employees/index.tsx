@@ -20,7 +20,7 @@ const Employees = () => {
  <div className="header-Employees">
  <Show/>
  <section className="searchSection">
- <LabeledInput nameId="search" type="search" name="Search :"/>
+ <LabeledInput nameLable="" nameId="search" type="search" name="Search :"/>
  </section>
  </div>
  <Table/>

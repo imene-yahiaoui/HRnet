@@ -2,19 +2,19 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface DatePickerItemProps {
-  name: string | null;
+  name: string ;
   htmlFor: string;
-  nameId: string | null;
-  type: string | null;
-  nameLable: string | null;
-  minDate: Date;
-  maxDate: Date;
+  nameId: string ;
+
+  nameLable: string ;
+  minDate: Date| null;
+  maxDate: Date| null;
   selectedDate: Date | null;
   onChange: (date: Date | null) => void;
 }
 function DatePickerComponent({
   name,
-  type,
+ 
   nameId,
   nameLable,
   minDate,
@@ -32,7 +32,7 @@ function DatePickerComponent({
         className="datepicker"
         id={nameId}
         name={name}
-        type={type}
+        
         minDate={minDate}
         maxDate={maxDate}
         selected={selectedDate}
