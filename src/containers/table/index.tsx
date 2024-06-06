@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "./style.css";
 import Arrows from "../../components/arrows";
-
+import { useSelector } from "react-redux";
+import { selectEmployees } from "../../helpers/features/employeeSlice.ts";
 function Table() {
+  const employees = useSelector(selectEmployees);
+  console.log("Employee data:", employees);
   const columns = [
     { title: "First Name", data: "firstName" },
     { title: "Last Name", data: "lastName" },

@@ -1,15 +1,22 @@
 import "./style.css";
 interface LabeledInputProps {
-  name: string | null;
-  nameId: string | null;
-  type: string | null;
-  nameLable: string | null;
+  name: string;
+  nameId: string;
+  type: string;
+  nameLable: string;
 }
 function LabeledInput({ name, type, nameId, nameLable }: LabeledInputProps) {
   return (
     <>
       <label htmlFor={name}>{nameLable}</label>
-      <input  className ="inputUser" type={type} id={nameId} name={name}  defaultValue="" required/>
+      <input
+        className="inputUser"
+        type={type}
+        id={nameId}
+        name={name}
+        defaultValue=""
+        required
+      />
     </>
   );
 }

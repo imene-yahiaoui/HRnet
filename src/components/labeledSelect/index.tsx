@@ -1,34 +1,33 @@
 import Select from "react-select";
 import "./style.css";
+interface OptionType {
+  value: string;
+  label: string;
+}
 interface LabeledSelectProps {
   htmlFor: string;
   label: string;
   name: string;
-  nameId: string;
-  options: [];
-  defaultValue: string;
+  options: OptionType[];
+  defaultValue: OptionType | null;
   placeholder: string;
-  onChange: () => void;
+  onChange: (string: OptionType | null) => void;
 }
 function LabeledSelect({
   name,
-  nameId,
   options,
   defaultValue,
   placeholder,
   onChange,
   htmlFor,
   label,
-  className,
 }: LabeledSelectProps) {
   return (
     <div className="select-container">
-      <label htmlFor={nameId} htmlFor={htmlFor}>
-        {label}
-      </label>
+      <label htmlFor={htmlFor}>{label}</label>
 
       <Select
-        className={`select   ${className}`}
+        className="select"
         name={name}
         defaultValue={defaultValue}
         onChange={onChange}

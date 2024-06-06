@@ -1,9 +1,7 @@
 import LabeledInput from "../../components/labeledInput";
 import DatePickerComponent from "../../components/datePickerComponent";
- 
 import { useDispatch } from "react-redux";
- import {addEmployeeInfos} from "../../helpers/features/employeeSlice.ts"
- import {store}from "../../store.js"
+import { addEmployeeInfos } from "../../helpers/features/employeeSlice.ts";
 import "./style.css";
 import Button from "../../components/button/index";
 import { useState, useRef } from "react";
@@ -13,16 +11,40 @@ import departmentData from "../../assets/json/departmentData.json";
 import StateData from "../../assets/json/statesData.json";
 import DisplayMessage from "../../components/displayMessage";
 
+interface State {
+  abbreviation: string;
+  name: string;
+}
+interface FormElements extends HTMLFormControlsCollection {
+  firstName: HTMLInputElement;
+  lastName: HTMLInputElement;
+  street: HTMLInputElement;
+  city: HTMLInputElement;
+  state: HTMLSelectElement;
+  department: HTMLSelectElement;
+  zipCode: HTMLInputElement;
+  dateOfBirth: HTMLInputElement;
+  startDate: HTMLInputElement;
+}
+
+interface FormElement extends HTMLFormElement {
+  elements: FormElements;
+}
 function Form() {
- 
   const dispatch = useDispatch();
-  const form = useRef();
+  const form = useRef<FormElement | null>(null);
   const [modalisOpen, setModalisOpen] = useState(false);
-  const [DateBirth, setDateBirth] = useState(null);
+  const [DateBirth, setDateBirth] = useState<Date | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(null);
-  const [selectedOptionDepartement, setSelectedOptionDepartement] =
-    useState(null);
-  const [selectedOptionState, setSelectedOptionState] = useState(null);
+
+  const [selectedOptionDepartement, setSelectedOptionDepartement] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+  const [selectedOptionState, setSelectedOptionState] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
   // the min date of birth
   const minDate = new Date();
   minDate.setFullYear(minDate.getFullYear() - 70);
@@ -49,7 +71,7 @@ function Form() {
 
   // Fonction for addInvalidClass
   const addInvalidClass = (inputName: string) => {
-    const inputElement = form.current?.elements.namedItem(inputName) as
+    const inputElement = form.current?.elements?.namedItem(inputName) as
       | HTMLInputElement
       | HTMLSelectElement;
 
@@ -78,7 +100,7 @@ function Form() {
     const ValuelastName = form?.current?.lastName?.value.trim();
     const ValueStreet = form?.current?.street?.value.trim();
     const ValueCity = form?.current?.city?.value.trim();
-    const ValueState = form?.current?.state?.value.trim();
+    const ValueState = form?.current?.state?.value;
     const ValueDepartment = form?.current?.department?.value;
     const ValueZipCode = form?.current?.zipCode.value.trim();
     /**
@@ -87,7 +109,7 @@ function Form() {
 
     if (form.current?.checkValidity()) {
       console.log("Form is valid!");
-     
+
       const employeeData = {
         firstName: ValuefirstName,
         lastName: ValuelastName,
@@ -106,9 +128,9 @@ function Form() {
       employeeInfo.push(employeeData);
       console.log("Employee Array:", employeeInfo);
       addinvalidAll();
-   
+
       dispatch(addEmployeeInfos(employeeData));
-      localStorage.setItem("employeeData", JSON.stringify(store.getState()));
+      // localStorage.setItem("employeeData", JSON.stringify(store.getState()));
       setModalisOpen(true);
     } else {
       console.log("Form is invalid!");
@@ -131,16 +153,18 @@ function Form() {
   const closeModal = () => {
     setModalisOpen(false);
     //delet value
-    form.current.firstName.value = "";
-    form.current.lastName.value = "";
-    setDateBirth(null);
-    setStartDate(null);
-    setSelectedOptionDepartement(null);
-    setSelectedOptionState(null);
-    form.current.dateOfBirth.value = "";
-    form.current.street.value = "";
-    form.current.city.value = "";
-    form.current.zipCode.value = "";
+    if (form.current) {
+      form.current.firstName.value = "";
+      form.current.lastName.value = "";
+      setDateBirth(null);
+      setStartDate(null);
+      setSelectedOptionDepartement(null);
+      setSelectedOptionState(null);
+      form.current.dateOfBirth.value = "";
+      form.current.street.value = "";
+      form.current.city.value = "";
+      form.current.zipCode.value = "";
+    }
   };
 
   return (
@@ -161,7 +185,6 @@ function Form() {
           />
           <DatePickerComponent
             htmlFor="dateOfBirth"
-            type="date"
             name="dateOfBirth"
             nameLable="Date Of Birth"
             nameId="dateOfBirth"
@@ -173,11 +196,11 @@ function Form() {
 
           <DatePickerComponent
             htmlFor="startDate"
-            type="date"
             name="startDate"
             nameLable="Start Date"
             nameId="startDate"
             minDate={minStartDate}
+            maxDate={null}
             selectedDate={startDate}
             onChange={(date) => setStartDate(date)}
           />
@@ -199,14 +222,11 @@ function Form() {
             <LabeledSelect
               htmlFor="state"
               label="State"
-              inputId="state"
               name="state"
-              type="text"
               defaultValue={selectedOptionState}
               onChange={setSelectedOptionState}
               options={optionsState}
               placeholder="Alabama"
-              className="state"
             />
             <LabeledInput
               type="number"
@@ -219,17 +239,14 @@ function Form() {
           <LabeledSelect
             htmlFor="department"
             label="Department"
-            inputId="department"
             name="department"
-            type="text"
             defaultValue={selectedOptionDepartement}
             onChange={setSelectedOptionDepartement}
             options={optionsDepartement}
             placeholder="Sales"
-            className="department"
           />
         </form>
-        <Button className="saveBtn" btnName="Save" click={handleClick} />
+        <Button btnName="Save" click={handleClick} />
       </div>
       {modalisOpen ? (
         <Modal
