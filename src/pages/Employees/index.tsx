@@ -56,12 +56,6 @@ const Employees = () => {
   return (
     <div className="body-Employees">
  <Header title="Current Employees" />
- <div className="header-Employees">
-
-
-
-
- </div>
  <Table   columns={columns} data={Data} />
  <LinkComponent path="/" text="Home" />
 

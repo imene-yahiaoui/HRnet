@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { useTable, useSortBy, usePagination } from "react-table";
 import "./style.css";
 
-import LabeledInput from "../../components/labeledInput";
-
 const Table = ({ columns, data }) => {
+  const [searchInput, setSearchInput] = useState("");
+
+  /**
+   * @param  data ,searchInput
+   * @return  columns
+   * Fonction to filtre search
+   */
+
+  const filteredData = useMemo(() => {
+    return data.filter((row) => {
+      return columns.some((column) =>
+        String(row[column.accessor])
+          .toLowerCase()
+          .includes(searchInput.toLowerCase())
+      );
+    });
+  }, [data, columns, searchInput]);
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    // rows,
     prepareRow,
     page,
     canPreviousPage,
     canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
     nextPage,
     previousPage,
     setPageSize,
@@ -24,7 +35,7 @@ const Table = ({ columns, data }) => {
   } = useTable(
     {
       columns,
-      data,
+      data: filteredData,
       initialState: { pageIndex: 0 },
     },
     useSortBy,
@@ -40,14 +51,21 @@ const Table = ({ columns, data }) => {
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
-                  {/* Ajouter un indicateur de tri */}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : ""}
-                  </span>
+                 
+                  <div className="arrow">
+                    <button
+                   
+                      disabled={column.isSorted && !column.isSortedDesc}
+                    >
+                      🔼
+                    </button>
+                    <button
+                    
+                      disabled={column.isSorted && column.isSortedDesc}
+                    >
+                      🔽
+                    </button>
+                  </div>
                 </th>
               ))}
             </tr>
@@ -66,61 +84,56 @@ const Table = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      {/* Pagination */}
 
       <div className="tableFooter">
         <section>
-        <p>
-          {" "}
-          Showing {pageIndex + 1} to {columns.length + 1} of {data.length}{" "}
-          entries{" "}
-        </p>
+          <p>
+            {" "}
+            Showing {pageIndex + 1} to {columns.length + 1} of {data.length}{" "}
+            entries{" "}
+          </p>
         </section>
-    
+
         <section>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          Previous
-        </button>
-        <span>
-         
-         <strong>
-           {pageIndex + 1}
-         </strong>
-       </span>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          Next
-        </button>
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            Previous
+          </button>
+          <span>
+            <strong>{pageIndex + 1}</strong>
+          </span>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            Next
+          </button>
+        </section>
+      </div>
+      <div className="headerTable">
+        <section className="showSection">
+          <label htmlFor="Show">Show</label>
+          <select
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+          >
+            {[10, 25, 50, 100].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>
+          <p> entries </p>
+        </section>
 
-       
-         </section>
-          </div>
-        <div className="headerTable">
-          <section className="showSection">
-            <label htmlFor="Show">Show</label>
-            <select
-              value={pageSize}
-              onChange={(e) => {
-                setPageSize(Number(e.target.value));
-              }}
-            >
-              {[10, 25, 50, 100].map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
-                  {pageSize}
-                </option>
-              ))}
-            </select>
-            <p> entries </p>
-          </section>
-
-          <section className="searchSection">
-            <LabeledInput
-              nameLable="Search:"
-              nameId="search"
-              type="search"
-              name="Search :"
-            />
-          </section>
-      
+        <section className="searchSection">
+          <label htmlFor="Search">Search : </label>
+          <input
+            className="inputUser"
+            type="text"
+            id="Search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </section>
       </div>
     </div>
   );
