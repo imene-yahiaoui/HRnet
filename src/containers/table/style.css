@@ -15,6 +15,7 @@ td {
 
 th {
   background-color: #ffffff;
+  text-align: left;
 }
 
 tr:nth-child(odd) {
@@ -89,4 +90,22 @@ tr:hover {
   align-items: center;
   justify-content: space-between;
   order: 3;
+}
+.searchSection input {
+  height: 20px;
+  border: 1px solid black;
+}
+.arrow {
+  display: flex;
+  flex-direction: row;
+}
+.arrow button {
+  background: none;
+  border: none;
+}
+.searchSection {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  column-gap: 10px;
 }

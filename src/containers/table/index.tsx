@@ -51,14 +51,21 @@ const Table = ({ columns, data }) => {
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
-                  {/* Ajouter un indicateur de tri */}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : ""}
-                  </span>
+                 
+                  <div className="arrow">
+                    <button
+                   
+                      disabled={column.isSorted && !column.isSortedDesc}
+                    >
+                      🔼
+                    </button>
+                    <button
+                    
+                      disabled={column.isSorted && column.isSortedDesc}
+                    >
+                      🔽
+                    </button>
+                  </div>
                 </th>
               ))}
             </tr>
