@@ -2,4 +2,4 @@ HRnet 💻📱
 
 Technologies utilisées :
 
-React, TypeScript, redux
+React, TypeScript, redux,Cypress 
