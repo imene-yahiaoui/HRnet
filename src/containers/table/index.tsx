@@ -1,25 +1,55 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useMemo } from "react";
-import { useTable, useSortBy, usePagination } from "react-table";
+import {
+  useTable,
+  useSortBy,
+  usePagination,
+  Column,
+  Row,
+  TableInstance,
+  TableState,
+
+} from "react-table";
 import "./style.css";
 
-const Table = ({ columns, data }) => {
+// Interface pour les données de la table
+interface TableRow {
+  [key: string]: any;
+}
+
+// Interface pour les propriétés du composant Table
+interface TableProps {
+  columns: Column<TableRow>[];
+  data: TableRow[];
+}
+
+// Interface étendue de TableInstance
+interface ExtendedTableInstance<D extends object> extends TableInstance<D> {
+  page: Row<D>[];
+  canPreviousPage: boolean;
+  canNextPage: boolean;
+  nextPage: () => void;
+  previousPage: () => void;
+  setPageSize: (size: number) => void;
+  state: TableState<D> & { pageIndex: number; pageSize: number };
+}
+
+// Composant Table
+const Table: React.FC<TableProps> = ({ columns, data }) => {
   const [searchInput, setSearchInput] = useState("");
 
   /**
-   * @param  data ,searchInput
-   * @return  columns
-   * Fonction to filtre search
+   * Fonction pour filtrer les données en fonction de la recherche
    */
-
   const filteredData = useMemo(() => {
     return data.filter((row) => {
-      return columns.some((column) =>
-        String(row[column.accessor])
-          .toLowerCase()
-          .includes(searchInput.toLowerCase())
-      );
+      return columns.some((column) => {
+        const value = row[column.accessor as string];
+        return String(value).toLowerCase().includes(searchInput.toLowerCase());
+      });
     });
   }, [data, columns, searchInput]);
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -32,15 +62,15 @@ const Table = ({ columns, data }) => {
     previousPage,
     setPageSize,
     state: { pageIndex, pageSize },
-  } = useTable(
+  } = useTable<TableRow>(
     {
       columns,
       data: filteredData,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0 } as Partial<TableState<TableRow>>,
     },
     useSortBy,
     usePagination
-  );
+  ) as ExtendedTableInstance<TableRow>;
 
   return (
     <div className="table-container">
@@ -49,20 +79,13 @@ const Table = ({ columns, data }) => {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <th {...column.getHeaderProps((column as any).getSortByToggleProps())}>
                   {column.render("Header")}
-                 
                   <div className="arrow">
-                    <button
-                   
-                      disabled={column.isSorted && !column.isSortedDesc}
-                    >
+                    <button disabled={(column as any).isSorted && !(column as any).isSortedDesc}>
                       🔼
                     </button>
-                    <button
-                    
-                      disabled={column.isSorted && column.isSortedDesc}
-                    >
+                    <button disabled={(column as any).isSorted && (column as any).isSortedDesc}>
                       🔽
                     </button>
                   </div>
@@ -88,9 +111,7 @@ const Table = ({ columns, data }) => {
       <div className="tableFooter">
         <section>
           <p>
-            {" "}
-            Showing {pageIndex + 1} to {columns.length + 1} of {data.length}{" "}
-            entries{" "}
+            Showing {pageIndex + 1} to {Math.min((pageIndex + 1) * pageSize, data.length)} of {data.length} entries
           </p>
         </section>
 
