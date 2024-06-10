@@ -8,7 +8,6 @@ import {
   Row,
   TableInstance,
   TableState,
-
 } from "react-table";
 import "./style.css";
 
@@ -31,6 +30,7 @@ interface ExtendedTableInstance<D extends object> extends TableInstance<D> {
   nextPage: () => void;
   previousPage: () => void;
   setPageSize: (size: number) => void;
+  gotoPage: (pageIndex: number) => void;
   state: TableState<D> & { pageIndex: number; pageSize: number };
 }
 
@@ -42,8 +42,8 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
    * Fonction pour filtrer les données en fonction de la recherche
    */
   const filteredData = useMemo(() => {
-    return data.filter((row) => {
-      return columns.some((column) => {
+    return data?.filter((row) => {
+      return columns?.some((column) => {
         const value = row[column.accessor as string];
         return String(value).toLowerCase().includes(searchInput.toLowerCase());
       });
@@ -61,6 +61,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     nextPage,
     previousPage,
     setPageSize,
+    gotoPage,
     state: { pageIndex, pageSize },
   } = useTable<TableRow>(
     {
@@ -72,61 +73,10 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     usePagination
   ) as ExtendedTableInstance<TableRow>;
 
+  const totalPages = Math.ceil(filteredData.length / pageSize);
+
   return (
     <div className="table-container">
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps((column as any).getSortByToggleProps())}>
-                  {column.render("Header")}
-                  <div className="arrow">
-                    <button disabled={(column as any).isSorted && !(column as any).isSortedDesc}>
-                      🔼
-                    </button>
-                    <button disabled={(column as any).isSorted && (column as any).isSortedDesc}>
-                      🔽
-                    </button>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-
-      <div className="tableFooter">
-        <section>
-          <p>
-            Showing {pageIndex + 1} to {Math.min((pageIndex + 1) * pageSize, data.length)} of {data.length} entries
-          </p>
-        </section>
-
-        <section>
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            Previous
-          </button>
-          <span>
-            <strong>{pageIndex + 1}</strong>
-          </span>
-          <button onClick={() => nextPage()} disabled={!canNextPage}>
-            Next
-          </button>
-        </section>
-      </div>
       <div className="headerTable">
         <section className="showSection">
           <label htmlFor="Show">Show</label>
@@ -154,6 +104,82 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
+        </section>
+      </div>
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th
+                  {...column.getHeaderProps(
+                    (column as any).getSortByToggleProps()
+                  )}
+                >
+                  {column.render("Header")}
+                  <div className="arrow">
+                    <button
+                      disabled={
+                        (column as any).isSorted &&
+                        !(column as any).isSortedDesc
+                      }
+                    >
+                      🔼
+                    </button>
+                    <button
+                      disabled={
+                        (column as any).isSorted && (column as any).isSortedDesc
+                      }
+                    >
+                      🔽
+                    </button>
+                  </div>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {page.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      <div className="tableFooter">
+        <section>
+          <p>
+            Showing {pageIndex + 1} to{" "}
+            {Math.min((pageIndex + 1) * pageSize, data?.length)} of{" "}
+            {data?.length} entries
+          </p>
+        </section>
+
+        <section className="numberPAgeSection">
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            Previous
+          </button>
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              onClick={() => gotoPage(i)}
+              style={{
+                backgroundColor: pageIndex === i ? "#d3d2d272" : "transparent",
+              }}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            Next
+          </button>
         </section>
       </div>
     </div>

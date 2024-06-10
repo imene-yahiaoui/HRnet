@@ -13,7 +13,7 @@ const persistedReducer = persistReducer(persistConfig, useReducer);
 
 export const store = configureStore({
   reducer: {
-    user: persistedReducer,
+    employee: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
