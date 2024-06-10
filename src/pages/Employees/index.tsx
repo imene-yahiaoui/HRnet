@@ -5,60 +5,63 @@
  *
  * @returns {JSX.Element} - Rendered component.
  */
-import Header from "../../components/header" ;
+import Header from "../../components/header";
 import LinkComponent from "../../components/link";
 
-import Table from "../../containers/table/index"
+import Table from "../../containers/table/index";
 import "./style.css";
-import Data from "../../assets/json/mockData.json"
+import Data from "../../assets/json/mockData.json";
+import { useSelector } from "react-redux";
+import { selectEmployees } from "../../helpers/features/employeeSlice";
 
 const Employees = () => {
+  const employeesData = useSelector(selectEmployees) || [];
+  console.log("ici resu", employeesData);
+  const haveData = employeesData?.length > 0 ? employeesData : Data;
   const columns = [
     {
-      Header: 'First Name',
-      accessor: 'first-name',  
+      Header: "First Name",
+      accessor: "firstName",
     },
     {
-      Header: 'Last Name',
-      accessor: 'last-name',
+      Header: "Last Name",
+      accessor: "lastName",
     },
     {
-      Header: 'Start Date',
-      accessor: 'start-date',
+      Header: "Start Date",
+      accessor: "startDate",
     },
     {
-      Header: 'Department',
-      accessor: 'department',
+      Header: "Department",
+      accessor: "department",
     },
     {
-      Header: 'Date of Birth',
-      accessor: 'date-of-birth',
+      Header: "Date of Birth",
+      accessor: "dateOfBirth",
     },
     {
-      Header: 'Street',
-      accessor: 'street',
+      Header: "Street",
+      accessor: "street",
     },
     {
-      Header: 'City',
-      accessor: 'city',
+      Header: "City",
+      accessor: "city",
     },
     {
-      Header: 'State',
-      accessor: 'state',
+      Header: "State",
+      accessor: "state",
     },
     {
-      Header: 'Zip Code',
-      accessor: 'zip-code',
+      Header: "Zip Code",
+      accessor: "zipCode",
     },
   ];
 
-
   return (
     <div className="body-Employees">
- <Header title="Current Employees" />
- <Table   columns={columns} data={Data} />
- <LinkComponent path="/" text="Home" />
-
+      <Header title="Current Employees" />
+      <Table columns={columns} data={haveData} />
+      <LinkComponent path="/" text="Home" />
     </div>
   );
 };

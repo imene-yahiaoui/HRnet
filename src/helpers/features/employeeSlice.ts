@@ -17,12 +17,12 @@ const employeeSlice = createSlice({
   initialState,
   reducers: {
     addEmployeeInfos: (state, action: PayloadAction<EmployeeInfo>) => {
-      state.employees.push(action.payload);
+      state.employees?.push(action.payload);
     },
   },
 });
 
 export const { addEmployeeInfos } = employeeSlice.actions;
 export default employeeSlice.reducer;
-export const selectEmployees = (state: { user: EmployeeInfo }) =>
-  state.user.employees;
+
+export const selectEmployees = (state: { employee: EmployeeState }) => state.employee.employees;

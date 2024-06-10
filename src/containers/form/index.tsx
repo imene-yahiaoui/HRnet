@@ -125,12 +125,12 @@ function Form() {
        * Add employee data to the employee array
        */
 
-      employeeInfo.push(employeeData);
+      employeeInfo?.push(employeeData);
       console.log("Employee Array:", employeeInfo);
       addinvalidAll();
 
       dispatch(addEmployeeInfos(employeeData));
-      // localStorage.setItem("employeeData", JSON.stringify(store.getState()));
+
       setModalisOpen(true);
     } else {
       console.log("Form is invalid!");

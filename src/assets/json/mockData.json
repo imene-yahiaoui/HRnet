@@ -1,222 +1,222 @@
 [
   {
-    "first-name": "Oliver",
-    "last-name": "Jones",
-    "start-date": "2022-08-12",
+    "firstName": "Oliver",
+    "lastName": "Jones",
+    "startDate": "2022-08-12",
     "department": "Finance",
-    "date-of-birth": "1989-11-10",
+    "dateOfBirth": "1989-11-10",
     "street": "123 Pine Street",
     "city": "Lakeside",
     "state": "MN",
-    "zip-code": "55110"
+    "zipCode": "55110"
   },
   {
-    "first-name": "Sophia",
-    "last-name": "Taylor",
-    "start-date": "2023-03-15",
+    "firstName": "Sophia",
+    "lastName": "Taylor",
+    "startDate": "2023-03-15",
     "department": "IT",
-    "date-of-birth": "1992-01-05",
+    "dateOfBirth": "1992-01-05",
     "street": "456 Cedar Avenue",
     "city": "Greenville",
     "state": "NC",
-    "zip-code": "27834"
+    "zipCode": "27834"
   },
   {
-    "first-name": "Liam",
-    "last-name": "Williams",
-    "start-date": "2021-10-18",
+    "firstName": "Liam",
+    "lastName": "Williams",
+    "startDate": "2021-10-18",
     "department": "Operations",
-    "date-of-birth": "1987-07-22",
+    "dateOfBirth": "1987-07-22",
     "street": "789 Birch Road",
     "city": "Riverside",
     "state": "NJ",
-    "zip-code": "08075"
+    "zipCode": "08075"
   },
   {
-    "first-name": "Ava",
-    "last-name": "Brown",
-    "start-date": "2022-11-01",
+    "firstName": "Ava",
+    "lastName": "Brown",
+    "startDate": "2022-11-01",
     "department": "Customer Support",
-    "date-of-birth": "1993-03-15",
+    "dateOfBirth": "1993-03-15",
     "street": "321 Oak Lane",
     "city": "Mapleton",
     "state": "IN",
-    "zip-code": "46060"
+    "zipCode": "46060"
   },
   {
-    "first-name": "James",
-    "last-name": "Davis",
-    "start-date": "2023-05-20",
+    "firstName": "James",
+    "lastName": "Davis",
+    "startDate": "2023-05-20",
     "department": "Research and Development",
-    "date-of-birth": "1990-12-25",
+    "dateOfBirth": "1990-12-25",
     "street": "654 Maple Street",
     "city": "Hillside",
     "state": "CO",
-    "zip-code": "80129"
+    "zipCode": "80129"
   },
   {
-    "first-name": "Isabella",
-    "last-name": "Martinez",
-    "start-date": "2021-09-30",
+    "firstName": "Isabella",
+    "lastName": "Martinez",
+    "startDate": "2021-09-30",
     "department": "Sales",
-    "date-of-birth": "1988-02-14",
+    "dateOfBirth": "1988-02-14",
     "street": "987 Pine Lane",
     "city": "Fairview",
     "state": "TX",
-    "zip-code": "75069"
+    "zipCode": "75069"
   },
   {
-    "first-name": "Ethan",
-    "last-name": "Garcia",
-    "start-date": "2020-06-12",
+    "firstName": "Ethan",
+    "lastName": "Garcia",
+    "startDate": "2020-06-12",
     "department": "Logistics",
-    "date-of-birth": "1985-08-30",
+    "dateOfBirth": "1985-08-30",
     "street": "123 Elm Avenue",
     "city": "Woodland",
     "state": "WA",
-    "zip-code": "98674"
+    "zipCode": "98674"
   },
   {
-    "first-name": "Mia",
-    "last-name": "Rodriguez",
-    "start-date": "2023-02-22",
+    "firstName": "Mia",
+    "lastName": "Rodriguez",
+    "startDate": "2023-02-22",
     "department": "Marketing",
-    "date-of-birth": "1991-10-18",
+    "dateOfBirth": "1991-10-18",
     "street": "456 Oak Street",
     "city": "Brookside",
     "state": "OH",
-    "zip-code": "44145"
+    "zipCode": "44145"
   },
   {
-    "first-name": "Alexander",
-    "last-name": "Wilson",
-    "start-date": "2021-01-15",
+    "firstName": "Alexander",
+    "lastName": "Wilson",
+    "startDate": "2021-01-15",
     "department": "Human Resources",
-    "date-of-birth": "1984-05-20",
+    "dateOfBirth": "1984-05-20",
     "street": "789 Cedar Avenue",
     "city": "Parkview",
     "state": "CA",
-    "zip-code": "90210"
+    "zipCode": "90210"
   },
   {
-    "first-name": "Charlotte",
-    "last-name": "Lee",
-    "start-date": "2022-07-07",
+    "firstName": "Charlotte",
+    "lastName": "Lee",
+    "startDate": "2022-07-07",
     "department": "Engineering",
-    "date-of-birth": "1995-04-25",
+    "dateOfBirth": "1995-04-25",
     "street": "321 Birch Lane",
     "city": "Rosewood",
     "state": "OR",
-    "zip-code": "97035"
+    "zipCode": "97035"
   },
   {
-    "first-name": "Benjamin",
-    "last-name": "Clark",
-    "start-date": "2023-04-10",
+    "firstName": "Benjamin",
+    "lastName": "Clark",
+    "startDate": "2023-04-10",
     "department": "Legal",
-    "date-of-birth": "1982-09-30",
+    "dateOfBirth": "1982-09-30",
     "street": "654 Maple Avenue",
     "city": "Riverdale",
     "state": "PA",
-    "zip-code": "15146"
+    "zipCode": "15146"
   },
   {
-    "first-name": "Amelia",
-    "last-name": "Walker",
-    "start-date": "2021-12-03",
+    "firstName": "Amelia",
+    "lastName": "Walker",
+    "startDate": "2021-12-03",
     "department": "Finance",
-    "date-of-birth": "1987-12-05",
+    "dateOfBirth": "1987-12-05",
     "street": "987 Oak Street",
     "city": "Evergreen",
     "state": "IL",
-    "zip-code": "60605"
+    "zipCode": "60605"
   },
   {
-    "first-name": "Daniel",
-    "last-name": "Harris",
-    "start-date": "2022-03-27",
+    "firstName": "Daniel",
+    "lastName": "Harris",
+    "startDate": "2022-03-27",
     "department": "Customer Support",
-    "date-of-birth": "1990-06-10",
+    "dateOfBirth": "1990-06-10",
     "street": "123 Cedar Avenue",
     "city": "Summerville",
     "state": "GA",
-    "zip-code": "30747"
+    "zipCode": "30747"
   },
   {
-    "first-name": "Harper",
-    "last-name": "Young",
-    "start-date": "2020-04-19",
+    "firstName": "Harper",
+    "lastName": "Young",
+    "startDate": "2020-04-19",
     "department": "IT",
-    "date-of-birth": "1989-03-27",
+    "dateOfBirth": "1989-03-27",
     "street": "456 Birch Lane",
     "city": "Meadowbrook",
     "state": "AZ",
-    "zip-code": "85021"
+    "zipCode": "85021"
   },
   {
-    "first-name": "Elijah",
-    "last-name": "King",
-    "start-date": "2021-11-15",
+    "firstName": "Elijah",
+    "lastName": "King",
+    "startDate": "2021-11-15",
     "department": "Operations",
-    "date-of-birth": "1992-07-07",
+    "dateOfBirth": "1992-07-07",
     "street": "789 Oak Avenue",
     "city": "Lakewood",
     "state": "NV",
-    "zip-code": "89123"
+    "zipCode": "89123"
   },
   {
-    "first-name": "Scarlett",
-    "last-name": "Green",
-    "start-date": "2022-09-01",
+    "firstName": "Scarlett",
+    "lastName": "Green",
+    "startDate": "2022-09-01",
     "department": "Research and Development",
-    "date-of-birth": "1993-11-17",
+    "dateOfBirth": "1993-11-17",
     "street": "321 Pine Street",
     "city": "Springfield",
     "state": "MA",
-    "zip-code": "01109"
+    "zipCode": "01109"
   },
   {
-    "first-name": "William",
-    "last-name": "Baker",
-    "start-date": "2023-01-20",
+    "firstName": "William",
+    "lastName": "Baker",
+    "startDate": "2023-01-20",
     "department": "Sales",
-    "date-of-birth": "1986-04-12",
+    "dateOfBirth": "1986-04-12",
     "street": "654 Cedar Lane",
     "city": "Bridgewater",
     "state": "VT",
-    "zip-code": "05035"
+    "zipCode": "05035"
   },
   {
-    "first-name": "Emma",
-    "last-name": "Perez",
-    "start-date": "2022-05-10",
+    "firstName": "Emma",
+    "lastName": "Perez",
+    "startDate": "2022-05-10",
     "department": "Marketing",
-    "date-of-birth": "1994-09-05",
+    "dateOfBirth": "1994-09-05",
     "street": "987 Oak Lane",
     "city": "Brookfield",
     "state": "WI",
-    "zip-code": "53045"
+    "zipCode": "53045"
   },
   {
-    "first-name": "James",
-    "last-name": "Gonzalez",
-    "start-date": "2021-08-30",
+    "firstName": "James",
+    "lastName": "Gonzalez",
+    "startDate": "2021-08-30",
     "department": "Logistics",
-    "date-of-birth": "1985-02-21",
+    "dateOfBirth": "1985-02-21",
     "street": "123 Birch Avenue",
     "city": "Greenfield",
     "state": "KY",
-    "zip-code": "41014"
+    "zipCode": "41014"
   },
   {
-    "first-name": "Evelyn",
-    "last-name": "Nelson",
-    "start-date": "2023-02-01",
+    "firstName": "Evelyn",
+    "lastName": "Nelson",
+    "startDate": "2023-02-01",
     "department": "Engineering",
-    "date-of-birth": "1990-01-22",
+    "dateOfBirth": "1990-01-22",
     "street": "456 Pine Street",
     "city": "Bridgetown",
     "state": "ME",
-    "zip-code": "04901"
+    "zipCode": "04901"
   }
 ]
