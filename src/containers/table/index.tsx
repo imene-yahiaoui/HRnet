@@ -81,7 +81,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
         <section className="showSection">
           <label htmlFor="pageSizeSelect">Show</label>
           <select
-          id="pageSizeSelect"
+            id="pageSizeSelect"
             value={pageSize}
             onChange={(e) => {
               setPageSize(Number(e.target.value));
@@ -146,7 +146,9 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  <td {...cell.getCellProps()} data-label={cell.column.Header}>
+                    {cell.render("Cell")}
+                  </td>
                 ))}
               </tr>
             );
