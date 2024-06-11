@@ -97,6 +97,13 @@ tr:hover {
   justify-content: space-between;
   order: 3;
 }
+.searchSection{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  column-gap: 10px;
+
+}
 
 .searchSection input {
   height: 20px;

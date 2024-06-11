@@ -79,8 +79,9 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     <div className="table-container">
       <div className="headerTable">
         <section className="showSection">
-          <label htmlFor="Show">Show</label>
+          <label htmlFor="pageSizeSelect">Show</label>
           <select
+          id="pageSizeSelect"
             value={pageSize}
             onChange={(e) => {
               setPageSize(Number(e.target.value));
@@ -96,7 +97,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
         </section>
 
         <section className="searchSection">
-          <label htmlFor="Search">Search : </label>
+          <label htmlFor="Search">Search:</label>
           <input
             className="inputUser"
             type="text"
