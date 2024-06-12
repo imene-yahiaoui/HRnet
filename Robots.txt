@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://imeneyahiaoui.com/sitemap.xml
+Sitemap: https://hrnethr.netlify.app/sitemap.xml
