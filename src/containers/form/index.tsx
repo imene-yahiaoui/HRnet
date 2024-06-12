@@ -34,7 +34,7 @@ function Form() {
   const dispatch = useDispatch();
   const form = useRef<FormElement | null>(null);
   const [modalisOpen, setModalisOpen] = useState(false);
-  const [DateBirth, setDateBirth] = useState<Date | null>(null);
+  const [dateOfBirth, setDateOfBirth] = useState<Date | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(null);
 
   const [selectedOptionDepartement, setSelectedOptionDepartement] = useState<{
@@ -57,6 +57,7 @@ function Form() {
   /**
    * optionsDepartement
    */
+
   const optionsDepartement = departmentData.map((state: State) => ({
     value: state.abbreviation,
     label: state.name,
@@ -156,7 +157,7 @@ function Form() {
     if (form.current) {
       form.current.firstName.value = "";
       form.current.lastName.value = "";
-      setDateBirth(null);
+      setDateOfBirth(null);
       setStartDate(null);
       setSelectedOptionDepartement(null);
       setSelectedOptionState(null);
@@ -190,8 +191,8 @@ function Form() {
             nameId="dateOfBirth"
             minDate={minDate}
             maxDate={maxDate}
-            selectedDate={DateBirth}
-            onChange={(date) => setDateBirth(date)}
+            selectedDate={dateOfBirth}
+            onChange={(date) => setDateOfBirth(date)}
           />
 
           <DatePickerComponent
