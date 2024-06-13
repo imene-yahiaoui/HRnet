@@ -11,7 +11,7 @@ import LinkComponent from "../../components/link";
 import { useState, useEffect } from "react";
 import Table from "../../containers/table/index";
 import "./style.css";
- 
+
 // import Data from "../../assets/json/mockData.json";
 import { useSelector } from "react-redux";
 import { selectEmployees } from "../../helpers/features/employeeSlice";
@@ -40,7 +40,7 @@ const Employees = () => {
           method: "GET",
         });
         if (requete.ok) {
-          const response:any = await requete.json();
+          const response: any = await requete.json();
           setData(response);
         }
       } catch (e) {

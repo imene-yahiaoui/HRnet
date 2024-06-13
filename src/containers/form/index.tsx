@@ -52,8 +52,8 @@ function Form() {
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
   // the min to start date
-  const minStartDate = new Date();
-  minStartDate.setDate(minStartDate.getDate());
+  // const minStartDate = new Date();
+  // minStartDate.setDate(minStartDate.getDate());
   /**
    * optionsDepartement
    */
@@ -200,7 +200,7 @@ function Form() {
             name="startDate"
             nameLable="Start Date"
             nameId="startDate"
-            minDate={minStartDate}
+            minDate={minDate}
             maxDate={null}
             selectedDate={startDate}
             onChange={(date) => setStartDate(date)}
