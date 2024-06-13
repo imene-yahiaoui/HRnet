@@ -14,7 +14,12 @@ const Home = () => {
   return (
     <div className="homePage">
       <Header title="HRnet" />
-      <LinkComponent path="/Employees" text="View Current Employees" />
+      <LinkComponent
+      data-testid="viewEmployees"
+        id="viewEmployees"
+        path="/Employees"
+        text="View Current Employees"
+      />
       <h2>Create Employee </h2>
       <Form />
     </div>

@@ -5,14 +5,16 @@ import { render } from "@testing-library/react";
 import App from "./App.tsx";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { BrowserRouter} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
 
 test("renders without crashing within a time limit", () => {
   render(
     <Provider store={store}>
-      <App />{" "}
+        <MemoryRouter>
+      <App />
+      </MemoryRouter>
     </Provider>,
-    { wrapper: BrowserRouter }
+  
   );
   const start = performance.now();
   const end = performance.now();
