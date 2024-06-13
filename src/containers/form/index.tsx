@@ -58,14 +58,14 @@ function Form() {
    * optionsDepartement
    */
 
-  const optionsDepartement = departmentData.map((state: State) => ({
+  const optionsDepartement = departmentData?.map((state: State) => ({
     value: state.abbreviation,
     label: state.name,
   }));
   /**
    * optionsState
    */
-  const optionsState = StateData.map((state: State) => ({
+  const optionsState = StateData?.map((state: State) => ({
     value: state.abbreviation,
     label: state.name,
   }));

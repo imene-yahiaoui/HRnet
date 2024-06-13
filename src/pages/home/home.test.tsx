@@ -17,3 +17,10 @@ test("render home page", () => {
   expect(screen.getByText("Create Employee")).toBeInTheDocument();
   expect(window.location.pathname).toBe("/");
 });
+
+/**
+ * go to employees page
+ */
+// const viewEmployees = screen.getByTestId("viewEmployees");
+// fireEvent.click(viewEmployees);
+// expect(window.location.pathname).toBe("/Employees");

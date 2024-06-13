@@ -10,13 +10,15 @@ import "./style.css";
 interface LinkComponentProps {
   path: string;
   text: string;
- 
+  id: string;
 }
-const LinkComponent = ({path,text}:LinkComponentProps) => {
+const LinkComponent = ({ path, text, id }: LinkComponentProps) => {
   return (
- <>
-      <Link className="link" to={path}>{text}</Link>
- </>
+    <>
+      <Link className="link" data-testid={id} to={path}>
+        {text}
+      </Link>
+    </>
   );
 };
 
