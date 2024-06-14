@@ -8,15 +8,19 @@ This project is a redesign of the human resource management application, develop
 ## **Technologies Used** 🛠️
 
 - **React**: For building the user interface.
-- 
+
+  
 - **TypeScript**: To add static typing to JavaScript.
-- 
+
+  
 - **Redux**: For global state management.
-- 
+
+  
 - **Cypress**: For end-to-end testing.
-- 
+
+  
 - **React Testing Library**: For unit and integration testing.
-- 
+  
 
 ## **Prerequisites**
 
