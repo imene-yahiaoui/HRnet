@@ -30,15 +30,15 @@ Make sure you have Node.js and npm installed on your machine.
 
 Follow these steps to set up and run the project locally:
 
-,,1. **Clone the project** ,,
+1. **Clone the project** 
 
-,,2. **Install dependencies** ,,
+2. **Install dependencies** 
 
    ```bash
    npm install
    ```
 
-,,3. **Start the development server** ,,
+3. **Start the development server** 
 
    ```bash
    npm run dev
