@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://hrnethr.netlify.app/sitemap.xml
+Sitemap:http://localhost:4173/sitemap.xml
