@@ -28,6 +28,7 @@ function LabeledSelect({
 
       <Select
         className="select"
+        inputId={htmlFor}
         name={name}
         defaultValue={defaultValue}
         onChange={onChange}
