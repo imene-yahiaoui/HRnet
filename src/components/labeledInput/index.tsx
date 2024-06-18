@@ -4,17 +4,19 @@ interface LabeledInputProps {
   nameId: string;
   type: string;
   nameLable: string;
+  autocomplete: string;
 }
-function LabeledInput({ name, type, nameId, nameLable }: LabeledInputProps) {
+function LabeledInput({ name, type, nameId, nameLable ,autocomplete}: LabeledInputProps) {
   return (
     <>
-      <label htmlFor={name}>{nameLable}</label>
+      <label htmlFor={nameId}>{nameLable}</label>
       <input
         className="inputUser"
         type={type}
         id={nameId}
         name={name}
         defaultValue=""
+        autoComplete={autocomplete}
         required
       />
     </>

@@ -177,12 +177,14 @@ function Form() {
             name="firstName"
             nameLable="First Name"
             nameId="first-name"
+            autocomplete="given-name"
           />
           <LabeledInput
             type="text"
             nameLable="Last Name"
             name="lastName"
             nameId="last-name"
+            autocomplete="family-name"
           />
           <DatePickerComponent
             htmlFor="dateOfBirth"
@@ -213,15 +215,17 @@ function Form() {
               nameLable="Street"
               name="street"
               nameId="street"
+              autocomplete="street-address"
             />
             <LabeledInput
               type="text"
               nameLable="City"
               name="city"
               nameId="city"
+              autocomplete="address-level2"
             />
             <LabeledSelect
-              htmlFor="state"
+              htmlFor="state-select"
               label="State"
               name="state"
               defaultValue={selectedOptionState}
@@ -234,11 +238,12 @@ function Form() {
               nameLable="Zip Code"
               name="zipCode"
               nameId="zip-code"
+              autocomplete="postal-code"
             />
           </fieldset>
 
           <LabeledSelect
-            htmlFor="department"
+            htmlFor="department-select"
             label="Department"
             name="department"
             defaultValue={selectedOptionDepartement}
