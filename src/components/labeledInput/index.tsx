@@ -6,7 +6,7 @@ interface LabeledInputProps {
   nameLable: string;
   autocomplete: string;
 }
-function LabeledInput({ name, type, nameId, nameLable }: LabeledInputProps) {
+function LabeledInput({ name, type, nameId, nameLable ,autocomplete}: LabeledInputProps) {
   return (
     <>
       <label htmlFor={nameId}>{nameLable}</label>
