@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://deploy-preview-18--zippy-lily-0e2152.netlify.app//sitemap.xml
