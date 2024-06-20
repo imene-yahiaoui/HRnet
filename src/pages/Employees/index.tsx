@@ -8,52 +8,17 @@
  */
 import Header from "../../components/header";
 import LinkComponent from "../../components/link";
-import { useState, useEffect } from "react";
 import Table from "../../containers/table/index";
 import "./style.css";
-
-// import Data from "../../assets/json/mockData.json";
+import Data from "../../assets/json/mockData.json";
 import { useSelector } from "react-redux";
 import { selectEmployees } from "../../helpers/features/employeeSlice";
-type data = {
-  firstName: string;
-  lastName: string;
-  street: string;
-  city: string;
-  state: number;
-  department: string;
-  zipCode: string;
-  dateOfBirth: string;
-  startDate: string;
-};
+
 const Employees = () => {
-  const [data, setData] = useState<data[]>([]);
   const employeesData = useSelector(selectEmployees) || [];
   console.log("ici resu", employeesData);
 
-  //fetch
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const requete = await fetch("../../data.json", {
-          method: "GET",
-        });
-        if (requete.ok) {
-          const response: any = await requete.json();
-          setData(response);
-        }
-      } catch (e) {
-        console.error(
-          "Une erreur s'est produite lors de la récupération des données :",
-          e
-        );
-      }
-    };
-    fetchData();
-  }, []);
-
-  const haveData = employeesData?.length > 0 ? employeesData : data;
+  const haveData = employeesData?.length > 0 ? employeesData : Data;
   const columns = [
     {
       Header: "First Name",
@@ -92,9 +57,6 @@ const Employees = () => {
       accessor: "zipCode",
     },
   ];
-  console.log(haveData, "haveData");
-  console.log(data, "data");
-  console.log(employeesData, "employeesData");
   employeesData;
 
   return (
