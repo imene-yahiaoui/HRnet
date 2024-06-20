@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useMemo } from "react";
 import {
   useTable,
@@ -109,47 +108,53 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
       </div>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps(
-                    (column as any).getSortByToggleProps()
-                  )}
-                >
-                  {column.render("Header")}
-                  <div className="arrow">
-                    <button
-                      disabled={
-                        (column as any).isSorted &&
-                        !(column as any).isSortedDesc
-                      }
-                    >
-                      🔼
-                    </button>
-                    <button
-                      disabled={
-                        (column as any).isSorted && (column as any).isSortedDesc
-                      }
-                    >
-                      🔽
-                    </button>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          ))}
+          {headerGroups.map((headerGroup) => {
+            const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
+            return (
+              <tr key={key} {...restHeaderGroupProps}>
+                {headerGroup.headers.map((column) => {
+                  const { key, ...restColumnProps } = column.getHeaderProps((column as any).getSortByToggleProps());
+                  return (
+                    <th key={key} {...restColumnProps}>
+                      {column.render("Header")}
+                      <div className="arrow">
+                        <button
+                          disabled={
+                            (column as any).isSorted &&
+                            !(column as any).isSortedDesc
+                          }
+                        >
+                          🔼
+                        </button>
+                        <button
+                          disabled={
+                            (column as any).isSorted && (column as any).isSortedDesc
+                          }
+                        >
+                          🔽
+                        </button>
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map((row) => {
             prepareRow(row);
+            const { key, ...restRowProps } = row.getRowProps();
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()} data-label={cell.column.Header}>
-                    {cell.render("Cell")}
-                  </td>
-                ))}
+              <tr key={key} {...restRowProps}>
+                {row.cells.map((cell) => {
+                  const { key, ...restCellProps } = cell.getCellProps();
+                  return (
+                    <td key={key} {...restCellProps} data-label={cell.column.Header}>
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
               </tr>
             );
           })}
