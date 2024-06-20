@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useMemo } from "react";
 import {
   useTable,
@@ -109,11 +110,14 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => {
-            const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
+            const { key, ...restHeaderGroupProps } =
+              headerGroup.getHeaderGroupProps();
             return (
               <tr key={key} {...restHeaderGroupProps}>
                 {headerGroup.headers.map((column) => {
-                  const { key, ...restColumnProps } = column.getHeaderProps((column as any).getSortByToggleProps());
+                  const { key, ...restColumnProps } = column.getHeaderProps(
+                    (column as any).getSortByToggleProps()
+                  );
                   return (
                     <th key={key} {...restColumnProps}>
                       {column.render("Header")}
@@ -128,7 +132,8 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                         </button>
                         <button
                           disabled={
-                            (column as any).isSorted && (column as any).isSortedDesc
+                            (column as any).isSorted &&
+                            (column as any).isSortedDesc
                           }
                         >
                           🔽
@@ -150,7 +155,11 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                 {row.cells.map((cell) => {
                   const { key, ...restCellProps } = cell.getCellProps();
                   return (
-                    <td key={key} {...restCellProps} data-label={cell.column.Header}>
+                    <td
+                      key={key}
+                      {...restCellProps}
+                      data-label={cell.column.Header}
+                    >
                       {cell.render("Cell")}
                     </td>
                   );
