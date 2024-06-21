@@ -1,3 +1,11 @@
+/**
+ * DatePickerComponent Component
+ *
+ * Renders a date picker component with a labeled input.
+ *
+ * @param {DatePickerItemProps} props - The properties passed to the component.
+ * @returns {JSX.Element} - Rendered date picker component.
+ */
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -5,7 +13,6 @@ interface DatePickerItemProps {
   name: string;
   htmlFor: string;
   nameId: string;
-
   nameLable: string;
   minDate: Date | null;
   maxDate: Date | null;
@@ -14,7 +21,6 @@ interface DatePickerItemProps {
 }
 function DatePickerComponent({
   name,
-
   nameId,
   nameLable,
   minDate,

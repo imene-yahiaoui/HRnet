@@ -1,3 +1,11 @@
+/**
+ * LabeledInput Component
+ *
+ * Renders a labeled input field with specified attributes.
+ *
+ * @param {LabeledInputProps} props - The properties passed to the component.
+ * @returns {JSX.Element} - Rendered labeled input component.
+ */
 import "./style.css";
 interface LabeledInputProps {
   name: string;

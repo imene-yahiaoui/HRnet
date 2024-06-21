@@ -1,4 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/**
+ * Table Component
+ *
+ * Renders a table with sortable and paginated columns, including a search functionality.
+ *
+ * @param {TableProps} props - The properties object.
+ * @returns {JSX.Element} - Rendered table component.
+ */
 import React, { useState, useMemo } from "react";
 import {
   useTable,
@@ -39,7 +47,9 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
   const [searchInput, setSearchInput] = useState("");
 
   /**
-   * Fonction pour filtrer les données en fonction de la recherche
+   * Filters the data based on the search input.
+   *
+   * @returns {TableRow[]} - The filtered data.
    */
   const filteredData = useMemo(() => {
     return data?.filter((row) => {

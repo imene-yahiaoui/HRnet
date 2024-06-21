@@ -1,3 +1,11 @@
+/**
+ * Header Component
+ *
+ * Renders a header with a specified title.
+ *
+ * @param {HeaderProps} props - The properties passed to the component.
+ * @returns {JSX.Element} - Rendered header component.
+ */
 import "./style.css";
 interface HeaderProps {
   title: string;

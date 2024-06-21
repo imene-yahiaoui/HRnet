@@ -1,3 +1,11 @@
+/**
+ * LabeledSelect Component
+ *
+ * Renders a labeled select dropdown using the react-select library.
+ *
+ * @param {LabeledSelectProps} props - The properties passed to the component.
+ * @returns {JSX.Element} - Rendered labeled select component.
+ */
 import Select from "react-select";
 import "./style.css";
 interface OptionType {

@@ -1,16 +1,17 @@
 /**
- * NotFound Component
+ * LinkComponent
  *
- * Renders the 404 error page with a message informing the user that the requested page does not exist.
+ * Renders a link to navigate to different routes in the application.
  *
- * @returns {JSX.Element} - Rendered component.
+ * @param {LinkComponentProps} props - The properties passed to the component.
+ * @returns {JSX.Element} - Rendered link component.
  */
 import { Link } from "react-router-dom";
 import "./style.css";
 interface LinkComponentProps {
-  path: string;
-  text: string;
-  id: string;
+  path: string; // The path to which the link should navigate
+  text: string; // The text to display for the link
+  id: string; // The unique identifier for the link (used for testing)
 }
 const LinkComponent = ({ path, text, id }: LinkComponentProps) => {
   return (
