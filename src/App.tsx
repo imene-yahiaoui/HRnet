@@ -1,3 +1,10 @@
+/**
+ * App Component
+ *
+ * Main application component that sets up lazy loading for routes and displays a loader while routes are being loaded.
+ *
+ * @returns {JSX.Element} - Rendered component.
+ */
 import { lazy, Suspense } from "react";
 import "./App.css";
 
