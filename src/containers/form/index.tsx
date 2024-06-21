@@ -1,3 +1,10 @@
+/**
+ * Form Component
+ *
+ * Renders a form for creating a new employee with fields for personal information and address.
+ *
+ * @returns {JSX.Element} - Rendered form component.
+ */
 import LabeledInput from "../../components/labeledInput";
 import DatePickerComponent from "../../components/datePickerComponent";
 import { useDispatch } from "react-redux";
@@ -51,26 +58,31 @@ function Form() {
   // the max date of birth
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
-  // the min to start date
-  // const minStartDate = new Date();
-  // minStartDate.setDate(minStartDate.getDate());
-  /**
-   * optionsDepartement
-   */
 
+  /**
+   * Generates options for the department select input.
+   *
+   * @returns {Array<{ value: string; label: string }>} - Options for department select.
+   */
   const optionsDepartement = departmentData?.map((state: State) => ({
     value: state.abbreviation,
     label: state.name,
   }));
   /**
-   * optionsState
+   * Generates options for the state select input.
+   *
+   * @returns {Array<{ value: string; label: string }>} - Options for state select.
    */
   const optionsState = StateData?.map((state: State) => ({
     value: state.abbreviation,
     label: state.name,
   }));
 
-  // Fonction for addInvalidClass
+  /**
+   * Adds the 'invalid' class to an input if it is empty.
+   *
+   * @param {string} inputName - The name of the input element.
+   */
   const addInvalidClass = (inputName: string) => {
     const inputElement = form.current?.elements?.namedItem(inputName) as
       | HTMLInputElement
@@ -82,6 +94,9 @@ function Form() {
       inputElement?.classList.remove("invalid");
     }
   };
+  /**
+   * Adds the 'invalid' class to all input elements.
+   */
   const addinvalidAll = () => {
     addInvalidClass("firstName");
     addInvalidClass("lastName");
@@ -93,7 +108,11 @@ function Form() {
     addInvalidClass("state");
     addInvalidClass("department");
   };
-  //click on save btn
+  /**
+   * Handles the click event on the save button.
+   *
+   * @param {React.MouseEvent<HTMLButtonElement>} e - The click event.
+   */
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const employeeInfo = [];
@@ -107,7 +126,6 @@ function Form() {
     /**
      * chek validation
      */
-
     if (form.current?.checkValidity()) {
       console.log("Form is valid!");
 
@@ -125,7 +143,6 @@ function Form() {
       /**
        * Add employee data to the employee array
        */
-
       employeeInfo?.push(employeeData);
       console.log("Employee Array:", employeeInfo);
       addinvalidAll();
@@ -148,9 +165,8 @@ function Form() {
     }
   };
   /**
-   * close Modal
+   * Closes the modal and resets the form.
    */
-
   const closeModal = () => {
     setModalisOpen(false);
     //delet value
