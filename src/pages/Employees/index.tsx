@@ -2,7 +2,7 @@
 /**
  * Employees Component
  *
- * Renders the Employees page  .
+ * Renders the Employees page which displays a table of current employees .
  *
  * @returns {JSX.Element} - Rendered component.
  */
@@ -15,10 +15,19 @@ import { useSelector } from "react-redux";
 import { selectEmployees } from "../../helpers/features/employeeSlice";
 
 const Employees = () => {
+  /**
+   * Get the employees data from the Redux store, fallback to mock data if not available
+   */
   const employeesData = useSelector(selectEmployees) || [];
   console.log("ici resu", employeesData);
-
+  /**
+   *  Determine the data to be used in the table
+   * if dont have data use mockData
+   */
   const haveData = employeesData?.length > 0 ? employeesData : Data;
+  /**
+   * Define the columns for the table
+   */
   const columns = [
     {
       Header: "First Name",
