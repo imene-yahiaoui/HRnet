@@ -11,6 +11,7 @@ describe("LabeledInput component", () => {
       nameId: "1",
       nameLable: "first-name",
       autocomplete: "first-name",
+      dataTestid: "firstName",
     };
 
     render(<LabeledInput {...props} />);
@@ -25,5 +26,6 @@ describe("LabeledInput component", () => {
     expect(input).toHaveAttribute("name", props.name);
     expect(input).toHaveAttribute("autoComplete", props.autocomplete);
     expect(input).toBeRequired();
+    expect(screen.getByTestId("firstName")).toBeInTheDocument();
   });
 });
