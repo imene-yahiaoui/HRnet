@@ -13,8 +13,16 @@ interface LabeledInputProps {
   type: string;
   nameLable: string;
   autocomplete: string;
+  dataTestid: string;
 }
-function LabeledInput({ name, type, nameId, nameLable ,autocomplete}: LabeledInputProps) {
+function LabeledInput({
+  name,
+  type,
+  nameId,
+  nameLable,
+  autocomplete,
+  dataTestid,
+}: LabeledInputProps) {
   return (
     <>
       <label htmlFor={nameId}>{nameLable}</label>
@@ -25,6 +33,7 @@ function LabeledInput({ name, type, nameId, nameLable ,autocomplete}: LabeledInp
         name={name}
         defaultValue=""
         autoComplete={autocomplete}
+        data-testid={dataTestid}
         required
       />
     </>

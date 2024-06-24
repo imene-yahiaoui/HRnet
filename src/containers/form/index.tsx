@@ -194,6 +194,7 @@ function Form() {
             nameLable="First Name"
             nameId="first-name"
             autocomplete="given-name"
+            dataTestid="first-name"
           />
           <LabeledInput
             type="text"
@@ -201,6 +202,7 @@ function Form() {
             name="lastName"
             nameId="last-name"
             autocomplete="family-name"
+            dataTestid="last-name"
           />
           <DatePickerComponent
             htmlFor="dateOfBirth"
@@ -232,6 +234,7 @@ function Form() {
               name="street"
               nameId="street"
               autocomplete="street-address"
+              dataTestid="Street"
             />
             <LabeledInput
               type="text"
@@ -239,6 +242,7 @@ function Form() {
               name="city"
               nameId="city"
               autocomplete="address-level2"
+              dataTestid="city"
             />
             <LabeledSelect
               htmlFor="state-select"
@@ -255,6 +259,7 @@ function Form() {
               name="zipCode"
               nameId="zip-code"
               autocomplete="postal-code"
+              dataTestid="zipCode"
             />
           </fieldset>
 

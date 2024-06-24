@@ -18,9 +18,4 @@ test("render home page", () => {
   expect(window.location.pathname).toBe("/");
 });
 
-/**
- * go to employees page
- */
-// const viewEmployees = screen.getByTestId("viewEmployees");
-// fireEvent.click(viewEmployees);
-// expect(window.location.pathname).toBe("/Employees");
+ 

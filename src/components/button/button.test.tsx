@@ -3,7 +3,7 @@ import Button from "./index";
 import { Provider } from "react-redux";
 import { store } from "../../store.ts";
 import { MemoryRouter } from "react-router-dom";
-import "@testing-library/jest-dom/extend-expect"; // Import jest-dom for additional matchers
+import "@testing-library/jest-dom/extend-expect";
 
 describe("Button component", () => {
   test("renders button with correct text", () => {
