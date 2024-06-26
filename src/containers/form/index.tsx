@@ -273,7 +273,7 @@ function Form() {
             placeholder="Sales"
           />
         </form>
-        <Button btnName="Save" click={handleClick} />
+        <Button  btnName="Save" click={handleClick} />
       </div>
       {modalisOpen ? (
         <Modal
