@@ -19,7 +19,7 @@ const Employees = () => {
    * Get the employees data from the Redux store, fallback to mock data if not available
    */
   const employeesData = useSelector(selectEmployees) || [];
-  console.log("ici resu", employeesData);
+ 
   /**
    *  Determine the data to be used in the table
    * if dont have data use mockData
