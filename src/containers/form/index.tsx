@@ -113,16 +113,10 @@ function Form() {
    *
    * @param {React.MouseEvent<HTMLButtonElement>} e - The click event.
    */
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const employeeInfo = [];
-    const ValuefirstName = form?.current?.firstName?.value?.trim();
-    const ValuelastName = form?.current?.lastName?.value.trim();
-    const ValueStreet = form?.current?.street?.value.trim();
-    const ValueCity = form?.current?.city?.value.trim();
-    const ValueState = form?.current?.state?.value;
-    const ValueDepartment = form?.current?.department?.value;
-    const ValueZipCode = form?.current?.zipCode.value.trim();
+
     /**
      * chek validation
      */
@@ -130,21 +124,17 @@ function Form() {
       console.log("Form is valid!");
 
       const employeeData = {
-        firstName: ValuefirstName,
-        lastName: ValuelastName,
-        street: ValueStreet,
-        city: ValueCity,
-        state: ValueState,
-        department: ValueDepartment,
-        zipCode: ValueZipCode,
+        firstName: form.current.firstName.value.trim(),
+        lastName: form.current.lastName.value.trim(),
+        street: form.current.street.value.trim(),
+        city: form.current.city.value.trim(),
+        state: selectedOptionState?.value || "",
+        department: selectedOptionDepartement?.value || "",
+        zipCode: form.current.zipCode.value.trim(),
         dateOfBirth: form.current.dateOfBirth.value,
         startDate: form.current.startDate.value,
       };
-      /**
-       * Add employee data to the employee array
-       */
-      employeeInfo?.push(employeeData);
-      console.log("Employee Array:", employeeInfo);
+
       addinvalidAll();
 
       dispatch(addEmployeeInfos(employeeData));
@@ -187,7 +177,7 @@ function Form() {
   return (
     <>
       <div className="container">
-        <form ref={form}>
+        <form ref={form} data-testid="form">
           <LabeledInput
             type="text"
             name="firstName"
