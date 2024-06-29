@@ -1,7 +1,6 @@
 # **HRnet Project**
 
-Welcome to the HRnet project! 🚀
-
+Welcome to the HRnet project! 🚀🚀
 
 
 This project is a redesign of the human resource management application, developed using React and other modern technologies for an enhanced user experience. 💻📱
