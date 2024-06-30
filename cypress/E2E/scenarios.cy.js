@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
+import { slowCypressDown } from "cypress-slow-down";
+slowCypressDown(200);
 beforeEach(() => {
   cy.visit("http://localhost:5173");
+  cy.viewport(1024, 900);
 });
 
 /**
@@ -121,7 +124,10 @@ describe("Form validation success", () => {
   it("should display modal confirmation when form is filled correctly", () => {
     fillForm();
     cy.get(".btn").click();
+    slowCypressDown(300);
     cy.get(".modal-container").should("be.visible");
     cy.get(".close-btn").click();
+    //go to employees page
+    cy.get('[data-testid="viewEmployees"]').click();
   });
 });
