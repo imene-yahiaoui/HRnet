@@ -52,6 +52,7 @@ function Form() {
     value: string;
     label: string;
   } | null>(null);
+
   // the min date of birth
   const minDate = new Date();
   minDate.setFullYear(minDate.getFullYear() - 70);
@@ -122,7 +123,7 @@ function Form() {
      */
     if (form.current?.checkValidity()) {
       console.log("Form is valid!");
-
+      console.log(form.current, "////////////:ici ");
       const employeeData = {
         firstName: form.current.firstName.value.trim(),
         lastName: form.current.lastName.value.trim(),
