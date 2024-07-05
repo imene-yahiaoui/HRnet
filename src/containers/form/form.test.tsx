@@ -171,7 +171,6 @@ describe("validate", () => {
     userEvent.click(departmentSelect);
     const departmentOption = await screen.findByText("Sales");
     userEvent.click(departmentOption);
-
     const saveButton = screen.getByRole("button", { name: /Save/i });
     userEvent.click(saveButton);
     if (formElement.checkValidity()) {
@@ -182,7 +181,6 @@ describe("validate", () => {
         expect(screen.getByText("Employee Created!")).toBeInTheDocument();
       });
 
-      l;
       const closeModalButton = screen.getByRole("button", { name: /x/i });
       userEvent.click(closeModalButton);
 
