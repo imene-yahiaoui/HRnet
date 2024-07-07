@@ -59,6 +59,10 @@ function Form() {
   // the max date of birth
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
+  // the max date of start
+  /**I chose to set today's date as the maximum date   */
+  const maxDateStart = new Date();
+  maxDateStart.setFullYear(maxDateStart.getFullYear());
 
   /**
    * Generates options for the department select input.
@@ -212,7 +216,7 @@ function Form() {
             nameLable="Start Date"
             nameId="startDate"
             minDate={minDate}
-            maxDate={null}
+            maxDate={maxDateStart}
             selectedDate={startDate}
             onChange={(date) => setStartDate(date)}
           />
