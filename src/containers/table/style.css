@@ -17,7 +17,6 @@ td {
 
 th {
   background-color: #ffffff;
-  text-align: left;
   position: relative;
 }
 
@@ -77,7 +76,7 @@ tr:hover {
   order: 1;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .showSection {

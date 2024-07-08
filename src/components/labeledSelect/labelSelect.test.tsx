@@ -37,41 +37,4 @@ describe("LabeledSelect component", () => {
     expect(select).toHaveAttribute("id", props.htmlFor);
     expect(screen.getByText("Human Resources")).toBeInTheDocument();
   });
-
-  //   test("calls onChange handler when an option is selected", () => {
-  //     const props = {
-  //       htmlFor: "department-select",
-  //       label: "Department",
-  //       name: "department",
-  //       options: [
-  //         { value: "HR", label: "Human Resources" },
-  //         { value: "IT", label: "Information Technology" },
-  //       ],
-  //       defaultValue: null,
-  //       placeholder: "Select department",
-  //       onChange: jest.fn(),
-  //     };
-
-  //     render(
-  //       <Provider store={store}>
-  //         <MemoryRouter>
-  //           <LabeledSelect {...props} />
-  //         </MemoryRouter>
-  //       </Provider>
-  //     );
-
-  //     const select = screen.getByRole("combobox");
-
-  //     // Open the dropdown menu
-  //     fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown" });
-
-  //     // Click on an option in the dropdown menu
-  //     const option = screen.getByText("Human Resources");
-  //     fireEvent.click(option);
-
-  //     expect(props.onChange).toHaveBeenCalledWith({
-  //       value: "HR",
-  //       label: "Human Resources",
-  //     });
-  //   });
 });

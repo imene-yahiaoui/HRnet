@@ -52,12 +52,17 @@ function Form() {
     value: string;
     label: string;
   } | null>(null);
+
   // the min date of birth
   const minDate = new Date();
   minDate.setFullYear(minDate.getFullYear() - 70);
   // the max date of birth
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
+  // the max date of start
+  /**I chose to set today's date as the maximum date   */
+  const maxDateStart = new Date();
+  maxDateStart.setFullYear(maxDateStart.getFullYear());
 
   /**
    * Generates options for the department select input.
@@ -121,8 +126,6 @@ function Form() {
      * chek validation
      */
     if (form.current?.checkValidity()) {
-      console.log("Form is valid!");
-
       const employeeData = {
         firstName: form.current.firstName.value.trim(),
         lastName: form.current.lastName.value.trim(),
@@ -211,7 +214,7 @@ function Form() {
             nameLable="Start Date"
             nameId="startDate"
             minDate={minDate}
-            maxDate={null}
+            maxDate={maxDateStart}
             selectedDate={startDate}
             onChange={(date) => setStartDate(date)}
           />
