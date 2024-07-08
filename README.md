@@ -59,7 +59,7 @@ To ensure code quality and functionality, several types of tests are implemented
 
 
   ```bash
-  npm run cypress:open
+ npx cypress open
   ```
 ---
 
