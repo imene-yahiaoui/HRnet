@@ -1,10 +1,9 @@
 .body-Employees {
-  width: 70%;
+  width: 87%;
   margin: 0 auto;
 }
 @media (max-width: 1024px) {
   .body-Employees {
     width: 90%;
-   
   }
 }

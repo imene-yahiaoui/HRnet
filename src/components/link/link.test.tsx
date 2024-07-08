@@ -20,7 +20,6 @@ describe("LinkComponent", () => {
     );
 
     const linkElement = getByTestId(id);
-    // expect(linkElement).toBeInTheDocument();
     expect(linkElement).toHaveTextContent("Test Link");
     expect(linkElement).toHaveAttribute("href", "/test-path");
   });

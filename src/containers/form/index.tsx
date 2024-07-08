@@ -126,8 +126,6 @@ function Form() {
      * chek validation
      */
     if (form.current?.checkValidity()) {
-      console.log("Form is valid!");
-      console.log(form.current, "////////////:ici ");
       const employeeData = {
         firstName: form.current.firstName.value.trim(),
         lastName: form.current.lastName.value.trim(),

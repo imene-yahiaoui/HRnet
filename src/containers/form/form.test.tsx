@@ -156,11 +156,11 @@ describe("validate", () => {
 
     userEvent.type(screen.getByLabelText(/First Name/i), "John");
     userEvent.type(screen.getByLabelText(/Last Name/i), "Doe");
-    userEvent.type(screen.getByLabelText(/Date Of Birth/i), "1990-01-01");
-    userEvent.type(screen.getByLabelText(/Start Date/i), "2024-01-01");
+    userEvent.type(screen.getByLabelText(/Date Of Birth/i), "15-06-1985");
+    userEvent.type(screen.getByLabelText(/Start Date/i), "12-08-2010");
     userEvent.type(screen.getByLabelText(/Street/i), "123 Street");
     userEvent.type(screen.getByLabelText(/City/i), "City of Code");
-    userEvent.type(screen.getByLabelText(/Zip Code/i), "5001");
+    userEvent.type(screen.getByLabelText(/Zip Code/i), "55110");
 
     const stateSelect = screen.getByLabelText(/State/i);
     userEvent.click(stateSelect);
