@@ -52,7 +52,7 @@ To ensure code quality and functionality, several types of tests are implemented
 - **Unit and integration tests** with React Testing Library
 - 
   ```bash
-  npm jest
+  npm run test 
   ```
 
 - **End-to-end tests** with Cypress
