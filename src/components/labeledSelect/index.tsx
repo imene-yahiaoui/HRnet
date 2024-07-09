@@ -19,6 +19,7 @@ interface LabeledSelectProps {
   options: OptionType[];
   defaultValue: OptionType | null;
   placeholder: string;
+  className: string;
   onChange: (string: OptionType | null) => void;
 }
 function LabeledSelect({
@@ -29,13 +30,14 @@ function LabeledSelect({
   onChange,
   htmlFor,
   label,
+  className,
 }: LabeledSelectProps) {
   return (
     <div className="select-container">
       <label htmlFor={htmlFor}>{label}</label>
 
       <Select
-        className="select"
+        className={className}
         inputId={htmlFor}
         name={name}
         defaultValue={defaultValue}

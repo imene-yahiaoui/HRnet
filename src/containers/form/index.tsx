@@ -88,15 +88,36 @@ function Form() {
    *
    * @param {string} inputName - The name of the input element.
    */
-  const addInvalidClass = (inputName: string) => {
-    const inputElement = form.current?.elements?.namedItem(inputName) as
-      | HTMLInputElement
-      | HTMLSelectElement;
+  const addInvalidClass = (name: string) => {
+    const element = form.current?.elements?.namedItem(name) as
+      | HTMLSelectElement
+      | HTMLInputElement;
 
-    if (inputElement && !inputElement.value) {
-      inputElement.classList.add("invalid");
+    if (element) {
+      if (element instanceof HTMLInputElement && !element.value) {
+        element.classList.add("invalid");
+      } else if (
+        element instanceof HTMLSelectElement &&
+        (!element.value || element.value === "default")
+      ) {
+        element.classList.add("invalid");
+      } else {
+        element.classList.remove("invalid");
+      }
+    }
+    //state
+    const elementState = document.querySelector(".state");
+    const elementDepartment = document.querySelector(".department");
+    if (selectedOptionState === null) {
+      elementState?.classList.add("invalid");
     } else {
-      inputElement?.classList.remove("invalid");
+      elementState?.classList.remove("invalid");
+    }
+    //department
+    if (selectedOptionDepartement === null) {
+      elementDepartment?.classList.add("invalid");
+    } else {
+      elementDepartment?.classList.remove("invalid");
     }
   };
   /**
@@ -110,8 +131,6 @@ function Form() {
     addInvalidClass("zipCode");
     addInvalidClass("startDate");
     addInvalidClass("dateOfBirth");
-    addInvalidClass("state");
-    addInvalidClass("department");
   };
   /**
    * Handles the click event on the save button.
@@ -126,6 +145,7 @@ function Form() {
      * chek validation
      */
     if (form.current?.checkValidity()) {
+      console.log("Form is valid!");
       const employeeData = {
         firstName: form.current.firstName.value.trim(),
         lastName: form.current.lastName.value.trim(),
@@ -241,6 +261,7 @@ function Form() {
               htmlFor="state-select"
               label="State"
               name="state"
+              className="state"
               defaultValue={selectedOptionState}
               onChange={setSelectedOptionState}
               options={optionsState}
@@ -259,6 +280,7 @@ function Form() {
           <LabeledSelect
             htmlFor="department-select"
             label="Department"
+            className="department"
             name="department"
             defaultValue={selectedOptionDepartement}
             onChange={setSelectedOptionDepartement}
