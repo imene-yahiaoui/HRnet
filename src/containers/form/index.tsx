@@ -106,20 +106,18 @@ function Form() {
       }
     }
     //state
+    const elementState = document.querySelector(".state");
+    const elementDepartment = document.querySelector(".department");
     if (selectedOptionState === null) {
-      const element = document.querySelector(".state");
-      element?.classList.add("invalid");
+      elementState?.classList.add("invalid");
     } else {
-      const element = document.querySelector(".state");
-      element?.classList.remove("invalid");
+      elementState?.classList.remove("invalid");
     }
     //department
     if (selectedOptionDepartement === null) {
-      const element = document.querySelector(".department");
-      element?.classList.add("invalid");
+      elementDepartment?.classList.add("invalid");
     } else {
-      const element = document.querySelector(".department");
-      element?.classList.remove("invalid");
+      elementDepartment?.classList.remove("invalid");
     }
   };
   /**
